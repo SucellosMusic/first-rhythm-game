@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvk63spt3b3m0"]
+
+[ext_resource type="Texture2D" uid="uid://b52mcnnhmnhph" path="res://Sprites/Assigned/Star_A.png" id="1_5a77u"]
+[ext_resource type="Script" path="res://Scripts/controller.gd" id="1_x5cxn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0s15x"]
+radius = 92.7631
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pg3kp"]
+radius = 41.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddp8b"]
+
+[node name="Player Star" type="Node2D"]
+script = ExtResource("1_x5cxn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5a77u")
+
+[node name="Position Okay" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Okay"]
+shape = SubResource("CircleShape2D_0s15x")
+
+[node name="Postion Great" type="Area2D" parent="."]
+collision_layer = 8192
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Postion Great"]
+shape = SubResource("CircleShape2D_pg3kp")
+
+[node name="Position Perfect" type="Area2D" parent="."]
+collision_layer = 16384
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]
+shape = SubResource("CircleShape2D_ddp8b")

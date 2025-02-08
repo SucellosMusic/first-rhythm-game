@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bghxi2dd62e5f"]
+
+[ext_resource type="Script" path="res://Scripts/controller.gd" id="1_uxlb6"]
+[ext_resource type="Texture2D" uid="uid://bih5n7xixddcb" path="res://Sprites/Assigned/Heart_A.png" id="1_xmbp2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gp7w3"]
+radius = 64.0078
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0vnk"]
+radius = 44.2832
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qjf5m"]
+
+[node name="Player Heart" type="Node2D"]
+script = ExtResource("1_uxlb6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xmbp2")
+
+[node name="Position Okay" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Okay"]
+shape = SubResource("CircleShape2D_gp7w3")
+
+[node name="Position Great" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Great"]
+shape = SubResource("CircleShape2D_a0vnk")
+
+[node name="Position Perfect" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]
+shape = SubResource("CircleShape2D_qjf5m")

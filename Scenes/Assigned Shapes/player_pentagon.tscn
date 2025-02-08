@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://da1p1yfe3sndv"]
+
+[ext_resource type="Script" path="res://Scripts/controller.gd" id="1_3isyu"]
+[ext_resource type="Texture2D" uid="uid://blw5aevj18v5v" path="res://Sprites/Assigned/pentagon_A.png" id="1_bcakq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nim28"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pc54e"]
+radius = 30.4138
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e77nm"]
+
+[node name="Player Pentagon" type="Node2D"]
+script = ExtResource("1_3isyu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bcakq")
+
+[node name="Position Okay" type="Area2D" parent="."]
+collision_layer = 16777216
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Okay"]
+shape = SubResource("CircleShape2D_nim28")
+
+[node name="Position Great" type="Area2D" parent="."]
+collision_layer = 33554432
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Great"]
+shape = SubResource("CircleShape2D_pc54e")
+
+[node name="Position Perfect" type="Area2D" parent="."]
+collision_layer = 67108864
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]
+shape = SubResource("CircleShape2D_e77nm")

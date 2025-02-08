@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cuj0kpfsqg0hy"]
+
+[ext_resource type="Script" path="res://Scripts/L_receiver.gd" id="1_jn21w"]
+[ext_resource type="Texture2D" uid="uid://dyupdrfxsp2nw" path="res://Sprites/Receiver/LShape.png" id="1_padmd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpwdv"]
+atlas = ExtResource("1_padmd")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jtxj"]
+atlas = ExtResource("1_padmd")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk6vl"]
+atlas = ExtResource("1_padmd")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7hoci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpwdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jtxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wk6vl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j3x1h"]
+radius = 73.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y122i"]
+radius = 39.0512
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvfcj"]
+
+[node name="L Receiver" type="Node2D"]
+script = ExtResource("1_jn21w")
+
+[node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
+position = Vector2(38, -68)
+sprite_frames = SubResource("SpriteFrames_7hoci")
+
+[node name="Position Okay" type="Area2D" parent="."]
+position = Vector2(38, -68)
+collision_layer = 0
+collision_mask = 65536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Okay"]
+shape = SubResource("CircleShape2D_j3x1h")
+
+[node name="Position Great" type="Area2D" parent="."]
+position = Vector2(38, -68)
+collision_layer = 0
+collision_mask = 131072
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Great"]
+shape = SubResource("CircleShape2D_y122i")
+
+[node name="Position Perfect" type="Area2D" parent="."]
+position = Vector2(38, -68)
+collision_layer = 0
+collision_mask = 262144
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]
+shape = SubResource("CircleShape2D_xvfcj")

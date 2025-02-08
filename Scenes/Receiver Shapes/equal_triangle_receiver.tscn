@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjtehkfy71gwp"]
+
+[ext_resource type="Texture2D" uid="uid://0c0vjfcgb5gj" path="res://Sprites/Receiver/EqualTriangle.png" id="1_4c1ar"]
+[ext_resource type="Script" path="res://Scripts/triangle_receiver.gd" id="1_480mc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s77h"]
+atlas = ExtResource("1_4c1ar")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvb5p"]
+atlas = ExtResource("1_4c1ar")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuppx"]
+atlas = ExtResource("1_4c1ar")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p60xa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s77h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvb5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuppx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_smhlt"]
+radius = 49.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mh38e"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ypuec"]
+
+[node name="Equal Triangle Receiver" type="Node2D"]
+script = ExtResource("1_480mc")
+
+[node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -19)
+sprite_frames = SubResource("SpriteFrames_p60xa")
+frame_progress = 0.132286
+
+[node name="Position Okay" type="Area2D" parent="."]
+collision_layer = 0
+priority = 2
+
+[node name="Position Collision" type="CollisionShape2D" parent="Position Okay"]
+shape = SubResource("CircleShape2D_smhlt")
+
+[node name="Position Great" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Great"]
+shape = SubResource("CircleShape2D_mh38e")
+
+[node name="Position Perfect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]
+shape = SubResource("CircleShape2D_ypuec")

@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://du6dfb804n6n7"]
+
+[ext_resource type="Script" path="res://Scripts/star_receiver.gd" id="1_fopyu"]
+[ext_resource type="Texture2D" uid="uid://d2ue55itorssk" path="res://Sprites/Receiver/Star.png" id="1_t5i3d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsfq7"]
+atlas = ExtResource("1_t5i3d")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti0ol"]
+atlas = ExtResource("1_t5i3d")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u8x7"]
+atlas = ExtResource("1_t5i3d")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dv1y2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsfq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ti0ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u8x7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ln7k7"]
+radius = 92.7631
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2tq7o"]
+radius = 41.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g5ys2"]
+
+[node name="Star Receiver" type="Node2D"]
+script = ExtResource("1_fopyu")
+
+[node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dv1y2")
+
+[node name="Position Okay" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Okay"]
+shape = SubResource("CircleShape2D_ln7k7")
+
+[node name="Postion Great" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Postion Great"]
+shape = SubResource("CircleShape2D_2tq7o")
+
+[node name="Position Perfect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16384
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]
+shape = SubResource("CircleShape2D_g5ys2")

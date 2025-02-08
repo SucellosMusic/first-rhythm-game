@@ -1,0 +1,74 @@
+[gd_scene load_steps=16 format=3 uid="uid://dg4jq7vwylhv8"]
+
+[ext_resource type="Script" path="res://Scripts/play_area.gd" id="1_h34r3"]
+[ext_resource type="PackedScene" uid="uid://cjtehkfy71gwp" path="res://Scenes/Receiver Shapes/equal_triangle_receiver.tscn" id="2_05tja"]
+[ext_resource type="PackedScene" uid="uid://dtyc21mp0igxq" path="res://Scenes/Assigned Shapes/player_equal_triangle.tscn" id="3_d4epq"]
+[ext_resource type="PackedScene" uid="uid://bghxi2dd62e5f" path="res://Scenes/Assigned Shapes/player_heart.tscn" id="4_wynvf"]
+[ext_resource type="PackedScene" uid="uid://m16oag8o3jjo" path="res://Scenes/Assigned Shapes/player_l.tscn" id="5_m5642"]
+[ext_resource type="PackedScene" uid="uid://da1p1yfe3sndv" path="res://Scenes/Assigned Shapes/player_pentagon.tscn" id="6_jwqrm"]
+[ext_resource type="PackedScene" uid="uid://dt0x6wrkwm5gb" path="res://Scenes/Assigned Shapes/player_right_triangle.tscn" id="7_rpwgb"]
+[ext_resource type="PackedScene" uid="uid://cvk63spt3b3m0" path="res://Scenes/Assigned Shapes/player_star.tscn" id="8_jo8h5"]
+[ext_resource type="PackedScene" uid="uid://2xjp10r8srvr" path="res://Scenes/Assigned Shapes/player_t.tscn" id="9_vbv5x"]
+[ext_resource type="PackedScene" uid="uid://ss20cocnn4wv" path="res://Scenes/Receiver Shapes/heart_receiver.tscn" id="10_mc178"]
+[ext_resource type="PackedScene" uid="uid://cuj0kpfsqg0hy" path="res://Scenes/Receiver Shapes/L_receiver.tscn" id="11_ujwsb"]
+[ext_resource type="PackedScene" uid="uid://dk7wkos5wlk83" path="res://Scenes/Receiver Shapes/pentagon_receiver.tscn" id="12_8r5qg"]
+[ext_resource type="PackedScene" uid="uid://dgdcniktoenve" path="res://Scenes/Receiver Shapes/right_triangle_receiver.tscn" id="13_8etfv"]
+[ext_resource type="PackedScene" uid="uid://du6dfb804n6n7" path="res://Scenes/Receiver Shapes/star_receiver.tscn" id="14_e6xgm"]
+[ext_resource type="PackedScene" uid="uid://ccwctama4o67d" path="res://Scenes/Receiver Shapes/t_receiver.tscn" id="15_4bs2g"]
+
+[node name="Play Area" type="Node2D"]
+script = ExtResource("1_h34r3")
+
+[node name="InTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="OutTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PlayerShapes" type="Node2D" parent="."]
+
+[node name="Player Equal Triangle" parent="PlayerShapes" instance=ExtResource("3_d4epq")]
+position = Vector2(-319, 35)
+
+[node name="Player Heart" parent="PlayerShapes" instance=ExtResource("4_wynvf")]
+position = Vector2(369, -176)
+
+[node name="Player L" parent="PlayerShapes" instance=ExtResource("5_m5642")]
+position = Vector2(-326, 267)
+
+[node name="Player Pentagon" parent="PlayerShapes" instance=ExtResource("6_jwqrm")]
+position = Vector2(115, -206)
+
+[node name="Player Right Triangle" parent="PlayerShapes" instance=ExtResource("7_rpwgb")]
+position = Vector2(-242, -86)
+
+[node name="Player Star" parent="PlayerShapes" instance=ExtResource("8_jo8h5")]
+position = Vector2(669, -169)
+
+[node name="Player T" parent="PlayerShapes" instance=ExtResource("9_vbv5x")]
+position = Vector2(-291, 409)
+
+[node name="Receivers" type="Node2D" parent="."]
+
+[node name="Triangle Receiver" parent="Receivers" instance=ExtResource("2_05tja")]
+position = Vector2(171, 823)
+
+[node name="Heart Receiver" parent="Receivers" instance=ExtResource("10_mc178")]
+position = Vector2(1396, 199)
+
+[node name="L Receiver" parent="Receivers" instance=ExtResource("11_ujwsb")]
+position = Vector2(781, 850)
+
+[node name="Pentagon Receiver" parent="Receivers" instance=ExtResource("12_8r5qg")]
+position = Vector2(1385, 490)
+
+[node name="Right Triangle Receiver" parent="Receivers" instance=ExtResource("13_8etfv")]
+position = Vector2(1322, 904)
+
+[node name="Star Receiver" parent="Receivers" instance=ExtResource("14_e6xgm")]
+position = Vector2(492, 782)
+
+[node name="T Receiver" parent="Receivers" instance=ExtResource("15_4bs2g")]
+position = Vector2(1064, 802)
+
+[connection signal="timeout" from="InTimer" to="." method="_on_in_timer_timeout"]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://dk7wkos5wlk83"]
+
+[ext_resource type="Texture2D" uid="uid://c1oveun2mavu6" path="res://Sprites/Receiver/pentagon.png" id="1_fjrrl"]
+[ext_resource type="Script" path="res://Scripts/pentagon_receiver.gd" id="1_vurda"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt3j0"]
+atlas = ExtResource("1_fjrrl")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wu4p3"]
+atlas = ExtResource("1_fjrrl")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17bp0"]
+atlas = ExtResource("1_fjrrl")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mkvor"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt3j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wu4p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17bp0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqq8a"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhpyn"]
+radius = 30.4138
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6iieb"]
+
+[node name="Pentagon Receiver" type="Node2D"]
+script = ExtResource("1_vurda")
+
+[node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mkvor")
+
+[node name="Position Okay" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16777216
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Okay"]
+shape = SubResource("CircleShape2D_cqq8a")
+
+[node name="Position Great" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 33554432
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Great"]
+shape = SubResource("CircleShape2D_vhpyn")
+
+[node name="Position Perfect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 67108864
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]
+shape = SubResource("CircleShape2D_6iieb")
