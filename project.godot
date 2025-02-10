@@ -15,12 +15,6 @@ run/main_scene="res://Scenes/Assigned Shapes/player_equal_triangle.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
-
-window/size/viewport_width=2560
-window/size/viewport_height=1440
-window/size/mode=3
-
 [input]
 
 ui_mouse_left_click={

@@ -49,21 +49,20 @@ sprite_frames = SubResource("SpriteFrames_p60xa")
 frame_progress = 0.132286
 
 [node name="Position Okay" type="Area2D" parent="."]
-collision_layer = 0
 priority = 2
 
 [node name="Position Collision" type="CollisionShape2D" parent="Position Okay"]
 shape = SubResource("CircleShape2D_smhlt")
 
 [node name="Position Great" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Great"]
 shape = SubResource("CircleShape2D_mh38e")
 
 [node name="Position Perfect" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dg4jq7vwylhv8"]
+[gd_scene load_steps=20 format=3 uid="uid://dg4jq7vwylhv8"]
 
 [ext_resource type="Script" path="res://Scripts/play_area.gd" id="1_h34r3"]
 [ext_resource type="PackedScene" uid="uid://cjtehkfy71gwp" path="res://Scenes/Receiver Shapes/equal_triangle_receiver.tscn" id="2_05tja"]
@@ -22,6 +22,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 69, 313, 0, 0, 0, 0, 350, 78, 0, 0, 0, 0, 837, 559, 0, 0, 0, 0, 1072, 318, 0, 0, 0, 0, 839, 86, 0, 0, 0, 0, 367, 547, 0, 0, 0, 0, 70, 321)
 }
 point_count = 7
+
+[sub_resource type="LabelSettings" id="LabelSettings_6k64h"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_6gwfb"]
+font_size = 62
 
 [node name="Play Area" type="Node2D"]
 script = ExtResource("1_h34r3")
@@ -78,8 +84,8 @@ position = Vector2(1242, -180)
 position = Vector2(1986, -184)
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(-79.67, -130.378)
-scale = Vector2(2.31406, 2.67152)
+position = Vector2(11.2751, -2.75674)
+scale = Vector2(0.996012, 1.03534)
 curve = SubResource("Curve2D_j2n5h")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
@@ -97,5 +103,20 @@ position = Vector2(-491, 415)
 
 [node name="Receiver Storage" type="Node2D" parent="."]
 position = Vector2(-489, 130)
+
+[node name="Score Text" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 583.0
+offset_right = 208.0
+offset_bottom = 684.0
+text = "Score: "
+label_settings = SubResource("LabelSettings_6k64h")
+
+[node name="Score Int" type="Label" parent="."]
+offset_left = 136.0
+offset_top = 588.0
+offset_right = 298.0
+offset_bottom = 678.0
+label_settings = SubResource("LabelSettings_6gwfb")
 
 [connection signal="timeout" from="Beats" to="." method="_on_in_timer_timeout"]

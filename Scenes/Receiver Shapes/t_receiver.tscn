@@ -47,21 +47,21 @@ script = ExtResource("1_ltufj")
 sprite_frames = SubResource("SpriteFrames_wq3o3")
 
 [node name="Position Okay" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 1048576
 collision_mask = 1048576
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Okay"]
 shape = SubResource("CircleShape2D_ssqf1")
 
 [node name="Position Great" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2097152
 collision_mask = 2097152
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Great"]
 shape = SubResource("CircleShape2D_o73c7")
 
 [node name="Position Perfect" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 4194304
 collision_mask = 4194304
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]

@@ -21,7 +21,7 @@ texture = ExtResource("1_8317a")
 [node name="Position Okay" type="Area2D" parent="."]
 position = Vector2(85, -102)
 collision_layer = 16
-collision_mask = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Okay"]
 shape = SubResource("CircleShape2D_l0vxt")
@@ -29,7 +29,7 @@ shape = SubResource("CircleShape2D_l0vxt")
 [node name="Position Great" type="Area2D" parent="."]
 position = Vector2(85, -102)
 collision_layer = 32
-collision_mask = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Great"]
 shape = SubResource("CircleShape2D_xhiwd")
@@ -37,7 +37,7 @@ shape = SubResource("CircleShape2D_xhiwd")
 [node name="Position Perfect" type="Area2D" parent="."]
 position = Vector2(85, -102)
 collision_layer = 64
-collision_mask = 0
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]
 shape = SubResource("CircleShape2D_uuylo")

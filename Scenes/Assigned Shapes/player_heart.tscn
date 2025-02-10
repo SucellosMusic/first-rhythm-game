@@ -19,21 +19,21 @@ texture = ExtResource("1_xmbp2")
 
 [node name="Position Okay" type="Area2D" parent="."]
 collision_layer = 256
-collision_mask = 0
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Okay"]
 shape = SubResource("CircleShape2D_gp7w3")
 
 [node name="Position Great" type="Area2D" parent="."]
 collision_layer = 512
-collision_mask = 0
+collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Great"]
 shape = SubResource("CircleShape2D_a0vnk")
 
 [node name="Position Perfect" type="Area2D" parent="."]
 collision_layer = 1024
-collision_mask = 0
+collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position Perfect"]
 shape = SubResource("CircleShape2D_qjf5m")
