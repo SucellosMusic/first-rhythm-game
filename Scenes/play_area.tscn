@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dg4jq7vwylhv8"]
+[gd_scene load_steps=18 format=3 uid="uid://dg4jq7vwylhv8"]
 
 [ext_resource type="Script" path="res://Scripts/play_area.gd" id="1_h34r3"]
 [ext_resource type="PackedScene" uid="uid://cjtehkfy71gwp" path="res://Scenes/Receiver Shapes/equal_triangle_receiver.tscn" id="2_05tja"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dgdcniktoenve" path="res://Scenes/Receiver Shapes/right_triangle_receiver.tscn" id="13_8etfv"]
 [ext_resource type="PackedScene" uid="uid://du6dfb804n6n7" path="res://Scenes/Receiver Shapes/star_receiver.tscn" id="14_e6xgm"]
 [ext_resource type="PackedScene" uid="uid://ccwctama4o67d" path="res://Scenes/Receiver Shapes/t_receiver.tscn" id="15_4bs2g"]
+[ext_resource type="AudioStream" uid="uid://btf6gu57t3fvj" path="res://Audio/WIP.wav" id="16_ac5yk"]
 
 [sub_resource type="Curve2D" id="Curve2D_j2n5h"]
 _data = {
@@ -24,13 +25,11 @@ point_count = 7
 
 [node name="Play Area" type="Node2D"]
 script = ExtResource("1_h34r3")
+bpm = 120
 
-[node name="InTimer" type="Timer" parent="."]
-wait_time = 0.5
+[node name="Beats" type="Timer" parent="."]
+wait_time = 0.25
 autostart = true
-
-[node name="OutTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="PlayerShapes" type="Node2D" parent="."]
 
@@ -58,29 +57,29 @@ position = Vector2(-291, 409)
 [node name="Receivers" type="Node2D" parent="."]
 
 [node name="Triangle Receiver" parent="Receivers" instance=ExtResource("2_05tja")]
-position = Vector2(171, 823)
+position = Vector2(951, -139)
 
 [node name="Heart Receiver" parent="Receivers" instance=ExtResource("10_mc178")]
-position = Vector2(1396, 199)
+position = Vector2(2920, -201)
 
 [node name="L Receiver" parent="Receivers" instance=ExtResource("11_ujwsb")]
-position = Vector2(781, 850)
+position = Vector2(1595, -149)
 
 [node name="Pentagon Receiver" parent="Receivers" instance=ExtResource("12_8r5qg")]
-position = Vector2(1385, 490)
+position = Vector2(2606, -216)
 
 [node name="Right Triangle Receiver" parent="Receivers" instance=ExtResource("13_8etfv")]
-position = Vector2(1322, 904)
+position = Vector2(2190, -115)
 
 [node name="Star Receiver" parent="Receivers" instance=ExtResource("14_e6xgm")]
-position = Vector2(492, 782)
+position = Vector2(1242, -180)
 
 [node name="T Receiver" parent="Receivers" instance=ExtResource("15_4bs2g")]
-position = Vector2(1064, 802)
+position = Vector2(1986, -184)
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(11.7567, 0)
-scale = Vector2(0.989033, 1)
+position = Vector2(-79.67, -130.378)
+scale = Vector2(2.31406, 2.67152)
 curve = SubResource("Curve2D_j2n5h")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
@@ -89,4 +88,14 @@ rotation = -0.696486
 
 [node name="Receiver Positioner" type="Node2D" parent="Path2D/PathFollow2D"]
 
-[connection signal="timeout" from="InTimer" to="." method="_on_in_timer_timeout"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_ac5yk")
+autoplay = true
+
+[node name="Shapes Storage" type="Node2D" parent="."]
+position = Vector2(-491, 415)
+
+[node name="Receiver Storage" type="Node2D" parent="."]
+position = Vector2(-489, 130)
+
+[connection signal="timeout" from="Beats" to="." method="_on_in_timer_timeout"]
