@@ -9,17 +9,16 @@ extends Node2D
 @onready var receiverPos : Node2D = $"Path2D/PathFollow2D/Receiver Positioner"
 
 #collision detectors
-@onready var shapePerf : Array[Area2D] = []
-@onready var shapeGreat : Array[Area2D] = []
-@onready var shapeOkay : Array[Area2D] = []
+var shapePerf : Array[Area2D] = []
+var shapeGreat : Array[Area2D] = []
+var shapeOkay : Array[Area2D] = []
 
 #time
 @onready var syncToStart = AudioServer.get_time_to_next_mix()
 @export var bpm : int;
 @onready var beats : int = (60/bpm)
 @onready var beatTimer : Timer = $Beats
-var halfBeat : int = 1
-var beat : int = 1
+var beat : int = 0
 var bar : int = 1
 
 #misc var
@@ -50,13 +49,15 @@ func _ready() ->void:
 	
 	beatTimer.start(syncToStart + .1)
 
-func get_score() ->void:
+
+func get_score() -> void:
 	if takeScore == true:
 		posPoint = get_pos_score()
 		orientPoint = get_orient_score()
 		timePoint = get_time_score()
 		totalScore += posPoint + orientPoint + timePoint
 		takeScore = false
+
 
 func get_pos_score() -> int:
 	if shapePerf[selection].has_overlapping_areas():
@@ -67,12 +68,14 @@ func get_pos_score() -> int:
 		return 1
 	return 0
 
+
 func get_orient_score() -> int:
 	if shapeOkay[selection].has_overlapping_areas():
 		if shapes[selection].rotation == receivers[selection].rotation:
 			return 1
 	return 0
 	
+
 
 func get_time_score() -> int:
 	if shapeOkay[selection].has_overlapping_areas():
@@ -92,6 +95,7 @@ func next_shape() -> void:
 	else:
 		selection += 1
 
+
 func _on_in_timer_timeout() -> void:
 	beatTimer.start(beats)
 	
@@ -106,7 +110,7 @@ func _on_in_timer_timeout() -> void:
 	else: 
 		beat += 1
 	
-	
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
