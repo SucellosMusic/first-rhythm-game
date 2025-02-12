@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuj0kpfsqg0hy"]
+[gd_scene load_steps=9 format=3 uid="uid://cuj0kpfsqg0hy"]
 
-[ext_resource type="Script" path="res://Scripts/L_receiver.gd" id="1_jn21w"]
 [ext_resource type="Texture2D" uid="uid://dyupdrfxsp2nw" path="res://Sprites/Receiver/LShape.png" id="1_padmd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpwdv"]
@@ -41,7 +40,6 @@ radius = 39.0512
 [sub_resource type="CircleShape2D" id="CircleShape2D_xvfcj"]
 
 [node name="L Receiver" type="Node2D"]
-script = ExtResource("1_jn21w")
 
 [node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
 position = Vector2(38, -68)

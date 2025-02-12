@@ -24,6 +24,7 @@ var bar : int = 1
 #misc var
 @onready var shapeSTORAGE = $"Shapes Storage".global_position
 @onready var receiverSTORAGE = $"Receiver Storage".global_position
+var recAnimate : Array[AnimatedSprite2D] = []
 var selection : int = 0
 var prevSelection : int = 0
 
@@ -46,6 +47,10 @@ func _ready() ->void:
 		
 	for r in receivers:
 		r.position = receiverSTORAGE
+		recAnimate.append((r.get_child(0)))
+	
+	for ra in recAnimate:
+		ra.play()
 	
 	beatTimer.start(syncToStart + .1)
 
@@ -58,7 +63,6 @@ func get_score() -> void:
 		totalScore += posPoint + orientPoint + timePoint
 		takeScore = false
 
-
 func get_pos_score() -> int:
 	if shapePerf[selection].has_overlapping_areas():
 		return 3
@@ -68,14 +72,11 @@ func get_pos_score() -> int:
 		return 1
 	return 0
 
-
 func get_orient_score() -> int:
 	if shapeOkay[selection].has_overlapping_areas():
 		if shapes[selection].rotation == receivers[selection].rotation:
 			return 1
 	return 0
-	
-
 
 func get_time_score() -> int:
 	if shapeOkay[selection].has_overlapping_areas():
