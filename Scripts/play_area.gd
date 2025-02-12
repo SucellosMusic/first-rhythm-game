@@ -14,16 +14,15 @@ var shapeGreat : Array[Area2D] = []
 var shapeOkay : Array[Area2D] = []
 
 #time
-@onready var syncToStart = AudioServer.get_time_to_next_mix()
+@onready var syncToStart : float = AudioServer.get_time_to_next_mix()
 @export var bpm : int;
-@onready var beats : int = (60/bpm)
+@onready var beats : float = (60/bpm)
 @onready var beatTimer : Timer = $Beats
-var beat : int = 0
-var bar : int = 1
+var beatCount : int = 0
 
 #misc var
-@onready var shapeSTORAGE = $"Shapes Storage".global_position
-@onready var receiverSTORAGE = $"Receiver Storage".global_position
+@onready var shapeSTORAGE = Vector2(-500, 400)
+@onready var receiverSTORAGE = Vector2(-500, 150)
 var recAnimate : Array[AnimatedSprite2D] = []
 var selection : int = 0
 var prevSelection : int = 0
@@ -99,18 +98,14 @@ func next_shape() -> void:
 
 func _on_in_timer_timeout() -> void:
 	beatTimer.start(beats)
+	next_shape()
+	takeScore = true
+	pathFollow.progress += 50
 	
-	if beat == 2 || beat == 4:
-		takeScore = true
-		pathFollow.progress += 50
-		next_shape()
-	
-	if beat == 4:
-		bar += 1
-		beat = 1
+	if beatCount == 4:
+		beatCount = 1
 	else: 
-		beat += 1
-	
+		beatCount += 1
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -121,7 +116,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(_float) -> void:
-	match beat:
+	match beatCount:
 		1:
 			receivers[prevSelection].position = receiverSTORAGE
 			shapes[prevSelection].position = shapeSTORAGE
