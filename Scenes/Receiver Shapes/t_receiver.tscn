@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccwctama4o67d"]
+[gd_scene load_steps=9 format=3 uid="uid://ccwctama4o67d"]
 
-[ext_resource type="Script" path="res://Scripts/t_receiver.gd" id="1_ltufj"]
 [ext_resource type="Texture2D" uid="uid://b0pbugfng76er" path="res://Sprites/Receiver/TShape.png" id="1_pqgrc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uc1tx"]
@@ -41,7 +40,6 @@ radius = 59.3043
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tob"]
 
 [node name="T Receiver" type="Node2D"]
-script = ExtResource("1_ltufj")
 
 [node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wq3o3")

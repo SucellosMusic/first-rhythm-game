@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dk7wkos5wlk83"]
+[gd_scene load_steps=9 format=3 uid="uid://dk7wkos5wlk83"]
 
 [ext_resource type="Texture2D" uid="uid://c1oveun2mavu6" path="res://Sprites/Receiver/pentagon.png" id="1_fjrrl"]
-[ext_resource type="Script" path="res://Scripts/pentagon_receiver.gd" id="1_vurda"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wt3j0"]
 atlas = ExtResource("1_fjrrl")
@@ -41,7 +40,6 @@ radius = 30.4138
 [sub_resource type="CircleShape2D" id="CircleShape2D_6iieb"]
 
 [node name="Pentagon Receiver" type="Node2D"]
-script = ExtResource("1_vurda")
 
 [node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mkvor")

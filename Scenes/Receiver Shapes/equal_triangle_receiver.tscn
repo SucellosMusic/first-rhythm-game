@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjtehkfy71gwp"]
+[gd_scene load_steps=9 format=3 uid="uid://cjtehkfy71gwp"]
 
 [ext_resource type="Texture2D" uid="uid://0c0vjfcgb5gj" path="res://Sprites/Receiver/EqualTriangle.png" id="1_4c1ar"]
-[ext_resource type="Script" path="res://Scripts/triangle_receiver.gd" id="1_480mc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4s77h"]
 atlas = ExtResource("1_4c1ar")
@@ -41,7 +40,6 @@ radius = 30.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ypuec"]
 
 [node name="Equal Triangle Receiver" type="Node2D"]
-script = ExtResource("1_480mc")
 
 [node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -19)

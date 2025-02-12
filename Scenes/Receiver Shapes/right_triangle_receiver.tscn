@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgdcniktoenve"]
+[gd_scene load_steps=9 format=3 uid="uid://dgdcniktoenve"]
 
-[ext_resource type="Script" path="res://Scripts/right_triangle_receiver.gd" id="1_lxd5v"]
 [ext_resource type="Texture2D" uid="uid://cbjf7cdam4q3g" path="res://Sprites/Receiver/RightTriangle.png" id="1_p05tb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ltq6y"]
@@ -41,7 +40,6 @@ radius = 52.9528
 [sub_resource type="CircleShape2D" id="CircleShape2D_31xoc"]
 
 [node name="Right Triangle Receiver" type="Node2D"]
-script = ExtResource("1_lxd5v")
 
 [node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
 position = Vector2(85, -102)

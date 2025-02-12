@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://du6dfb804n6n7"]
+[gd_scene load_steps=9 format=3 uid="uid://du6dfb804n6n7"]
 
-[ext_resource type="Script" path="res://Scripts/star_receiver.gd" id="1_fopyu"]
 [ext_resource type="Texture2D" uid="uid://d2ue55itorssk" path="res://Sprites/Receiver/Star.png" id="1_t5i3d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vsfq7"]
@@ -41,7 +40,6 @@ radius = 41.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_g5ys2"]
 
 [node name="Star Receiver" type="Node2D"]
-script = ExtResource("1_fopyu")
 
 [node name="Receiver Outline" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dv1y2")
