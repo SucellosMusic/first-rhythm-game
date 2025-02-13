@@ -15,8 +15,8 @@ var shapeOkay : Array[Area2D] = []
 
 #time
 @onready var syncToStart : float = AudioServer.get_time_to_next_mix()
-@export var bpm : int;
-@onready var beats : float = (60/bpm)
+@export var bpm : float;
+@onready var beats : float = (1/bpm)*60
 @onready var beatTimer : Timer = $Beats
 var beatCount : int = 0
 
@@ -24,8 +24,12 @@ var beatCount : int = 0
 @onready var shapeSTORAGE = Vector2(-500, 400)
 @onready var receiverSTORAGE = Vector2(-500, 150)
 var recAnimate : Array[AnimatedSprite2D] = []
+@export_range(0, 6) var receiverPattern : Array[int];
+@export_range(-90, 180, 45) var receiverOrientation : Array[int]
 var selection : int = 0
+var currSelection : int = 0
 var prevSelection : int = 0
+var currRotation : int = 0
 
 #scoring
 @onready var scoreDisplay : Label = $"Score Int"
@@ -87,13 +91,21 @@ func get_time_score() -> int:
 			return 1
 	return 0
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_A:
+			get_score()
+			scoreDisplay.text = str(totalScore)
+
 
 func next_shape() -> void:
-	prevSelection = selection
+	prevSelection = currSelection
 	if selection == 6:
 		selection = 0
 	else:
 		selection += 1
+	currSelection = receiverPattern[selection]
+	currRotation = receiverOrientation[selection]
 
 
 func _on_in_timer_timeout() -> void:
@@ -108,32 +120,29 @@ func _on_in_timer_timeout() -> void:
 		beatCount += 1
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_A:
-			get_score()
-			scoreDisplay.text = str(totalScore)
-
-
 func _process(_float) -> void:
 	match beatCount:
 		1:
 			receivers[prevSelection].position = receiverSTORAGE
 			shapes[prevSelection].position = shapeSTORAGE
-			receivers[selection].position = receiverPos.global_position
-			shapes[selection].position = get_local_mouse_position()
+			receivers[currSelection].position = receiverPos.global_position
+			receivers[currSelection].rotation_degrees = currRotation
+			shapes[currSelection].position = get_local_mouse_position()
 		2:
 			shapes[prevSelection].position = shapeSTORAGE
 			receivers[prevSelection].position = receiverSTORAGE
-			receivers[selection].position = receiverPos.global_position
-			shapes[selection].position = get_local_mouse_position()
+			receivers[currSelection].position = receiverPos.global_position
+			receivers[currSelection].rotation_degrees = currRotation
+			shapes[currSelection].position = get_local_mouse_position()
 		3:
 			shapes[prevSelection].position = shapeSTORAGE
 			receivers[prevSelection].position = receiverSTORAGE
-			receivers[selection].position = receiverPos.global_position
-			shapes[selection].position = get_local_mouse_position()
+			receivers[currSelection].position = receiverPos.global_position
+			receivers[currSelection].rotation_degrees = currRotation
+			shapes[currSelection].position = get_local_mouse_position()
 		4:
 			shapes[prevSelection].position = shapeSTORAGE
 			receivers[prevSelection].position = receiverSTORAGE
-			receivers[selection].position = receiverPos.global_position
-			shapes[selection].position = get_local_mouse_position()
+			receivers[currSelection].position = receiverPos.global_position
+			receivers[currSelection].rotation_degrees = currRotation
+			shapes[currSelection].position = get_local_mouse_position()
