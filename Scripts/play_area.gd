@@ -1,5 +1,8 @@
 extends Node2D
 
+#Audio
+@onready var audioPlayer : AudioStreamPlayer = $AudioStreamPlayer
+
 #shapes and receivers
 @onready var shapes = $PlayerShapes.get_children()
 @onready var receivers = $Receivers.get_children()
@@ -19,6 +22,7 @@ var shapeOkay : Array[Area2D] = []
 @onready var beats : float = (1/bpm)*60
 @onready var beatTimer : Timer = $Beats
 var beatCount : int = 0
+var CurrGameTime : float;
 
 #misc var
 @onready var shapeSTORAGE = Vector2(-500, 400)
@@ -55,6 +59,7 @@ func _ready() ->void:
 	for ra in recAnimate:
 		ra.play()
 	
+	audioPlayer.play()
 	beatTimer.start(syncToStart + .1)
 
 
@@ -118,9 +123,12 @@ func _on_in_timer_timeout() -> void:
 		beatCount = 1
 	else: 
 		beatCount += 1
+		
+	CurrGameTime += beats
+	print("audio time: ", roundi(audioPlayer.get_playback_position()), "game time: ", roundi(CurrGameTime))
 
 
-func _process(_float) -> void:
+func _process(delta: float) -> void:
 	match beatCount:
 		1:
 			receivers[prevSelection].position = receiverSTORAGE
@@ -146,3 +154,5 @@ func _process(_float) -> void:
 			receivers[currSelection].position = receiverPos.global_position
 			receivers[currSelection].rotation_degrees = currRotation
 			shapes[currSelection].position = get_local_mouse_position()
+			
+	

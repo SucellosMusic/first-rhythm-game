@@ -97,7 +97,6 @@ rotation = -0.696486
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_ac5yk")
-autoplay = true
 
 [node name="Score Text" type="Label" parent="."]
 offset_left = 10.0
