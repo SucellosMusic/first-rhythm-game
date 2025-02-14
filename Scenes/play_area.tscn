@@ -31,9 +31,9 @@ font_size = 62
 
 [node name="Play Area" type="Node2D"]
 script = ExtResource("1_h34r3")
-bpm = 120.0
 receiverPattern = Array[int]([0, 2, 4, 6, 1, 3, 6])
 receiverOrientation = Array[int]([0, 45, 0, -45, 0, 45, 0])
+bpm = 120.0
 
 [node name="Beats" type="Timer" parent="."]
 one_shot = true
@@ -41,13 +41,13 @@ one_shot = true
 [node name="PlayerShapes" type="Node2D" parent="."]
 
 [node name="Player Equal Triangle" parent="PlayerShapes" instance=ExtResource("3_d4epq")]
-position = Vector2(-384, 151)
+position = Vector2(-616, -121)
 
 [node name="Player Heart" parent="PlayerShapes" instance=ExtResource("4_wynvf")]
 position = Vector2(369, -176)
 
 [node name="Player L" parent="PlayerShapes" instance=ExtResource("5_m5642")]
-position = Vector2(-149, 260)
+position = Vector2(-435, -96)
 
 [node name="Player Pentagon" parent="PlayerShapes" instance=ExtResource("6_jwqrm")]
 position = Vector2(115, -206)
@@ -59,7 +59,7 @@ position = Vector2(-242, -86)
 position = Vector2(669, -169)
 
 [node name="Player T" parent="PlayerShapes" instance=ExtResource("9_vbv5x")]
-position = Vector2(-291, 409)
+position = Vector2(-828, -154)
 
 [node name="Receivers" type="Node2D" parent="."]
 
@@ -86,7 +86,7 @@ position = Vector2(1986, -184)
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(11.2751, -2.75674)
-scale = Vector2(0.996012, 1.03534)
+scale = Vector2(0.991, 1.03)
 curve = SubResource("Curve2D_j2n5h")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
@@ -113,4 +113,27 @@ offset_right = 298.0
 offset_bottom = 678.0
 label_settings = SubResource("LabelSettings_6gwfb")
 
+[node name="Button" type="Button" parent="."]
+offset_left = 545.0
+offset_top = 304.0
+offset_right = 660.0
+offset_bottom = 353.0
+text = "Start"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 301.0
+offset_top = 44.0
+offset_right = 881.0
+offset_bottom = 275.0
+text = "This is a playable prototype. 
+This version involves a fixed, looping sequence.
+
+Scoring system has 3 parts
+-Timing: press A on the beat while the shape is in position
+-Position: have the shape as closely in the center of the receiver as possible
+-Rotation: Rotate the piece with Left and Right mouse 
+
+Close with top right X at any time"
+
 [connection signal="timeout" from="Beats" to="." method="_on_in_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

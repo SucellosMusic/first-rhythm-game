@@ -1,5 +1,10 @@
 extends Node2D
 
+#button
+@onready var startButton : Button = $Button
+@onready var instructions : Label = $Label
+@onready var canStart : bool = false
+
 #Audio
 @onready var audioPlayer : AudioStreamPlayer = $AudioStreamPlayer
 
@@ -11,6 +16,14 @@ extends Node2D
 @onready var pathFollow : PathFollow2D = $"Path2D/PathFollow2D"
 @onready var receiverPos : Node2D = $"Path2D/PathFollow2D/Receiver Positioner"
 
+#Sequences
+@export_range(0, 6) var receiverPattern : Array[int];
+@export_range(-90, 180, 45) var receiverOrientation : Array[int]
+var selection : int;
+var currSelection : int;
+var prevSelection : int;
+var currRotation : int = 0
+
 #collision detectors
 var shapePerf : Array[Area2D] = []
 var shapeGreat : Array[Area2D] = []
@@ -21,19 +34,11 @@ var shapeOkay : Array[Area2D] = []
 @export var bpm : float;
 @onready var beats : float = (1/bpm)*60
 @onready var beatTimer : Timer = $Beats
-var beatCount : int = 0
-var CurrGameTime : float;
 
 #misc var
 @onready var shapeSTORAGE = Vector2(-500, 400)
 @onready var receiverSTORAGE = Vector2(-500, 150)
 var recAnimate : Array[AnimatedSprite2D] = []
-@export_range(0, 6) var receiverPattern : Array[int];
-@export_range(-90, 180, 45) var receiverOrientation : Array[int]
-var selection : int = 0
-var currSelection : int = 0
-var prevSelection : int = 0
-var currRotation : int = 0
 
 #scoring
 @onready var scoreDisplay : Label = $"Score Int"
@@ -45,7 +50,6 @@ var takeScore : bool = false
 
 
 func _ready() ->void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	for s in shapes:
 		s.position = shapeSTORAGE
 		shapePerf.append(s.get_child(1))
@@ -58,10 +62,16 @@ func _ready() ->void:
 	
 	for ra in recAnimate:
 		ra.play()
-	
+
+
+func _on_button_pressed() -> void:
+	canStart = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	audioPlayer.play()
 	beatTimer.start(syncToStart + .1)
-
+	startButton.hide()
+	instructions.hide()
+	
 
 func get_score() -> void:
 	if takeScore == true:
@@ -102,7 +112,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_score()
 			scoreDisplay.text = str(totalScore)
 
-
 func next_shape() -> void:
 	prevSelection = currSelection
 	if selection == 6:
@@ -112,47 +121,17 @@ func next_shape() -> void:
 	currSelection = receiverPattern[selection]
 	currRotation = receiverOrientation[selection]
 
-
 func _on_in_timer_timeout() -> void:
 	beatTimer.start(beats)
 	next_shape()
 	takeScore = true
 	pathFollow.progress += 50
-	
-	if beatCount == 4:
-		beatCount = 1
-	else: 
-		beatCount += 1
-		
-	CurrGameTime += beats
-	print("audio time: ", roundi(audioPlayer.get_playback_position()), "game time: ", roundi(CurrGameTime))
-
 
 func _process(delta: float) -> void:
-	match beatCount:
-		1:
-			receivers[prevSelection].position = receiverSTORAGE
-			shapes[prevSelection].position = shapeSTORAGE
-			receivers[currSelection].position = receiverPos.global_position
-			receivers[currSelection].rotation_degrees = currRotation
-			shapes[currSelection].position = get_local_mouse_position()
-		2:
-			shapes[prevSelection].position = shapeSTORAGE
-			receivers[prevSelection].position = receiverSTORAGE
-			receivers[currSelection].position = receiverPos.global_position
-			receivers[currSelection].rotation_degrees = currRotation
-			shapes[currSelection].position = get_local_mouse_position()
-		3:
-			shapes[prevSelection].position = shapeSTORAGE
-			receivers[prevSelection].position = receiverSTORAGE
-			receivers[currSelection].position = receiverPos.global_position
-			receivers[currSelection].rotation_degrees = currRotation
-			shapes[currSelection].position = get_local_mouse_position()
-		4:
-			shapes[prevSelection].position = shapeSTORAGE
-			receivers[prevSelection].position = receiverSTORAGE
-			receivers[currSelection].position = receiverPos.global_position
-			receivers[currSelection].rotation_degrees = currRotation
-			shapes[currSelection].position = get_local_mouse_position()
-			
+	if canStart:
+		receivers[prevSelection].position = receiverSTORAGE
+		shapes[prevSelection].position = shapeSTORAGE
+		receivers[currSelection].position = receiverPos.global_position
+		receivers[currSelection].rotation_degrees = currRotation
+		shapes[currSelection].position = get_local_mouse_position()
 	
