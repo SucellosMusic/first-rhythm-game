@@ -26,9 +26,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_j2n5h"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 91.5163, 207.044, 0, 0, 0, 0, 375.017, 118.082, 0, 0, 0, 0, 790.546, 115.149, 0, 0, 0, 0, 1086.33, 214.865)
+"points": PackedVector2Array(0, 0, 0, 0, 99.6868, 216.807, 0, 0, 0, 0, 375.017, 118.082, 0, 0, 0, 0, 790.546, 115.149, 0, 0, 0, 0, 987.618, 187.053, 0, 0, 0, 0, 989.674, 313.506, 0, 0, 0, 0, 804.021, 390.37, 0, 0, 0, 0, 559.068, 381.163, 0, 0, 0, 0, 401.83, 394.089, 0, 0, 0, 0, 157.238, 343.664, 0, 0, 0, 0, 92.4929, 283.133)
 }
-point_count = 4
+point_count = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_6k64h"]
 font_size = 40
@@ -143,20 +143,19 @@ position = Vector2(1671, -997)
 position = Vector2(176, -960)
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(19.5822, 78.7851)
-scale = Vector2(0.977069, 0.661881)
+position = Vector2(45.5155, 26.4705)
+scale = Vector2(0.967475, 1.21173)
 curve = SubResource("Curve2D_j2n5h")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(91.5163, 207.044)
-rotation = -0.304067
+position = Vector2(99.6868, 216.807)
+rotation = -0.344287
 
 [node name="Receiver Positioner" type="Node2D" parent="Path2D/PathFollow2D"]
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
-position = Vector2(139.223, 192.074)
-rotation = -0.304067
-h_offset = 50.0
+position = Vector2(99.6868, 216.807)
+rotation = -0.344287
 
 [node name="Hint Positioner" type="Node2D" parent="Path2D/PathFollow2D2"]
 
@@ -178,4 +177,31 @@ offset_right = 298.0
 offset_bottom = 678.0
 label_settings = SubResource("LabelSettings_6gwfb")
 
+[node name="Start" type="Button" parent="."]
+offset_left = 490.0
+offset_top = 403.0
+offset_right = 666.0
+offset_bottom = 495.0
+text = "Start"
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 203.0
+offset_top = 41.0
+offset_right = 975.0
+offset_bottom = 373.0
+text = "Welcome to the playable prototype for my Rhythm game.
+
+Line up shapes within their corresponding receiver in time with the music
+a hint shape is provided to indicate the next shape position and rotation
+-Mouse buttons to rotation left and right
+-Letter A to input shape
+
+Scoring
+-Timing: input piece at the correct time
+-position: have the piece in the center of the receiver
+-rotation: have the piece in the correct rotation
+
+Prototype will close automatically when the music finishes"
+
 [connection signal="timeout" from="Beats" to="." method="_on_in_timer_timeout"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

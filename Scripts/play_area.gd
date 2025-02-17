@@ -1,5 +1,9 @@
 extends Node2D
 
+#UI
+@onready var startButton : Button = $Start
+@onready var instructions : Label = $Instructions
+
 #Audio
 @onready var audioPlayer : AudioStreamPlayer = $AudioStreamPlayer
 
@@ -44,6 +48,7 @@ var shapeOkay : Array[Area2D] = []
 @onready var receiverSTORAGE = Vector2(-500, 150)
 @onready var altReceiverStorage = Vector2(-500, 650)
 @onready var hintsStorage = Vector2(-500, 900)
+var startSequence : bool = false
 var recAnimate : Array[AnimatedSprite2D] = []
 var altRecAnimate : Array[AnimatedSprite2D] = []
 
@@ -71,16 +76,22 @@ func _ready() ->void:
 		ar.position = altReceiverStorage
 		altRecAnimate.append((ar.get_child(0)))
 		
-	
 	for ra in recAnimate:
 		ra.play()
 		
 	for ara in altRecAnimate:
 		ara.play()
 
+	pathFollowTwo.progress = 200
+	
+func _on_start_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	audioPlayer.play()
 	beatTimer.start(syncToStart + beatOffset)
+	next_shape()
+	startSequence = true
+	startButton.hide()
+	instructions.hide()
 	
 
 func get_score() -> void:
@@ -140,24 +151,29 @@ func next_shape() -> void:
 func _on_in_timer_timeout() -> void:
 	beatTimer.start(beats)
 	next_shape()
+	startSequence = true
 	takeScore = true
-	pathFollow.progress += 50
-	pathFollowTwo.progress += 50
+	pathFollow.progress += 200
+	pathFollowTwo.progress += 200
 
 func _process(delta: float) -> void:
 	hints[hintPrevSelection].position = hintsStorage
 	receivers[prevSelection].position = receiverSTORAGE
 	shapes[prevSelection].position = shapeSTORAGE
+	
 	hints[hintCurrSelection].position = hintPos.global_position
 	hints[hintCurrSelection].rotation_degrees = hintRotation
-	receivers[currSelection].position = receiverPos.global_position
-	receivers[currSelection].rotation_degrees = currRotation
-	shapes[currSelection].position = get_local_mouse_position()
+	
+	if startSequence == true:
+		receivers[currSelection].position = receiverPos.global_position
+		receivers[currSelection].rotation_degrees = currRotation
+		shapes[currSelection].position = get_local_mouse_position()
 	
 	if Input.is_action_just_pressed("letter_A"):
 		get_score()
 		scoreDisplay.text = str(totalScore)
 		
-	if !audioPlayer.playing:
+	if startSequence == true && !audioPlayer.playing:
+		startSequence = false
 		await get_tree().create_timer(3).timeout
 		get_tree().quit()
