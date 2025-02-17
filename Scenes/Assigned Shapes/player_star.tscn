@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cvk63spt3b3m0"]
 
 [ext_resource type="Texture2D" uid="uid://b52mcnnhmnhph" path="res://Sprites/Assigned/Star_A.png" id="1_5a77u"]
-[ext_resource type="Script" path="res://Scripts/controller.gd" id="1_x5cxn"]
+[ext_resource type="Script" path="res://Scripts/shape rotation.gd" id="1_x5cxn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0s15x"]
 radius = 92.7631

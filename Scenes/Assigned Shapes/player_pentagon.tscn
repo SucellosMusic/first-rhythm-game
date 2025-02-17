@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://da1p1yfe3sndv"]
 
-[ext_resource type="Script" path="res://Scripts/controller.gd" id="1_3isyu"]
+[ext_resource type="Script" path="res://Scripts/shape rotation.gd" id="1_3isyu"]
 [ext_resource type="Texture2D" uid="uid://blw5aevj18v5v" path="res://Sprites/Assigned/pentagon_A.png" id="1_bcakq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nim28"]

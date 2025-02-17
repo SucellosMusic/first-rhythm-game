@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://m16oag8o3jjo"]
 
-[ext_resource type="Script" path="res://Scripts/controller.gd" id="1_na3ph"]
+[ext_resource type="Script" path="res://Scripts/shape rotation.gd" id="1_na3ph"]
 [ext_resource type="Texture2D" uid="uid://bhnq6pirvnpx1" path="res://Sprites/Assigned/LShape_A.png" id="1_vqxkq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0sq3m"]

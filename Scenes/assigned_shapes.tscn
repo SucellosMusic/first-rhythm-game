@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfyncxwjlvw0v"]
+
+[ext_resource type="PackedScene" uid="uid://dtyc21mp0igxq" path="res://Scenes/Assigned Shapes/player_equal_triangle.tscn" id="1_whmbh"]
+[ext_resource type="PackedScene" uid="uid://bghxi2dd62e5f" path="res://Scenes/Assigned Shapes/player_heart.tscn" id="2_icr07"]
+[ext_resource type="PackedScene" uid="uid://m16oag8o3jjo" path="res://Scenes/Assigned Shapes/player_l.tscn" id="3_uvx2w"]
+[ext_resource type="PackedScene" uid="uid://da1p1yfe3sndv" path="res://Scenes/Assigned Shapes/player_pentagon.tscn" id="4_fkcxp"]
+[ext_resource type="PackedScene" uid="uid://dt0x6wrkwm5gb" path="res://Scenes/Assigned Shapes/player_right_triangle.tscn" id="5_1foac"]
+[ext_resource type="PackedScene" uid="uid://cvk63spt3b3m0" path="res://Scenes/Assigned Shapes/player_star.tscn" id="6_sxqdo"]
+[ext_resource type="PackedScene" uid="uid://2xjp10r8srvr" path="res://Scenes/Assigned Shapes/player_t.tscn" id="7_13ftq"]
+
+[node name="Assigned Shapes" type="Node2D"]
+position = Vector2(1, -1)
+
+[node name="Player Equal Triangle" parent="." instance=ExtResource("1_whmbh")]
+position = Vector2(94, -164)
+
+[node name="Player Heart" parent="." instance=ExtResource("2_icr07")]
+position = Vector2(292, -183)
+
+[node name="Player L" parent="." instance=ExtResource("3_uvx2w")]
+position = Vector2(450, -123)
+
+[node name="Player Pentagon" parent="." instance=ExtResource("4_fkcxp")]
+position = Vector2(662, -208)
+
+[node name="Player Right Triangle" parent="." instance=ExtResource("5_1foac")]
+position = Vector2(785, -100)
+
+[node name="Player Star" parent="." instance=ExtResource("6_sxqdo")]
+position = Vector2(1072, -199)
+
+[node name="Player T" parent="." instance=ExtResource("7_13ftq")]
+position = Vector2(1280, -188)

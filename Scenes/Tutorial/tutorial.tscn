@@ -1,0 +1,135 @@
+[gd_scene load_steps=6 format=3 uid="uid://w22k3usnehtp"]
+
+[ext_resource type="Script" path="res://Scenes/Tutorial/tutorial.gd" id="1_l2mb1"]
+[ext_resource type="PackedScene" uid="uid://b4e80mv55y453" path="res://Scenes/hints.tscn" id="3_3fie0"]
+[ext_resource type="PackedScene" uid="uid://cfyncxwjlvw0v" path="res://Scenes/assigned_shapes.tscn" id="8_x8nov"]
+[ext_resource type="PackedScene" uid="uid://d0jbkh7knwqo" path="res://Scenes/receivers.tscn" id="9_070r2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gnwyh"]
+font_size = 36
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_l2mb1")
+
+[node name="Welcome" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Title" type="Label" parent="Welcome"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 61.0
+offset_right = 919.0
+offset_bottom = 130.0
+text = "Welcome to the Shape Beats tutorial"
+label_settings = SubResource("LabelSettings_gnwyh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main Text" type="Label" parent="Welcome"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 191.0
+offset_right = 1076.0
+offset_bottom = 353.0
+text = "Shape Beats is a 'choice matters' survival rhythm game where you, the player, have to align and rotate shapes in time while also choosing various \"paths\". Each level is an open ended experience to be explored rather than being linear with a predefined ending. The level isn't over until you lose or choose to quit.
+
+When you're ready to being, click 'Next'"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Shapes, Receivers, and Hints" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="intro" type="Label" parent="Shapes, Receivers, and Hints"]
+visible = false
+layout_mode = 0
+offset_left = 328.0
+offset_top = 24.0
+offset_right = 856.0
+offset_bottom = 229.0
+text = "Shapes and Receivers
+
+There are two main types of shapes the player will interact with. 
+
+Shapes- assigned to the player in sequence
+Receivers- outlined areas in the play area where shapes are \"placed\"
+
+click 'Next' to proceed"
+horizontal_alignment = 1
+
+[node name="intro to shapes" type="Label" parent="Shapes, Receivers, and Hints"]
+visible = false
+layout_mode = 0
+offset_left = 234.0
+offset_top = 23.0
+offset_right = 936.0
+offset_bottom = 228.0
+text = "As you can see, assigned shapes automatically snap to the mouse position, and can be rotated by player using [] to rotate left and [] to rotate right. Rotations are in 45 degree increments.
+
+You'll come across seven shapes. Click \"A\" to cycle through each and get used to how they rotate. Not every shape rotates the same so it may take some getting used to.
+
+click 'Next' when ready"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="intro to receivers" type="Label" parent="Shapes, Receivers, and Hints"]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 20.0
+offset_right = 874.0
+offset_bottom = 130.0
+text = "Each shape has a corresponding receiver. They can appear in any order, anywhere on the play area, and in any rotation.
+
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="intro to hints" type="Label" parent="Shapes, Receivers, and Hints"]
+visible = false
+layout_mode = 0
+offset_left = 308.0
+offset_top = 22.0
+offset_right = 918.0
+offset_bottom = 214.0
+text = "if enabled, a white outline will be provided to let you know what shape is next, where it'll be located, and it's rotation. The goal, of course, is to eventually be comfortable enough to disable this feature.
+
+Below is a short, repeating sequence of receivers and hints. 
+When you're ready, press 'Next'
+
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Assigned Shapes" parent="." instance=ExtResource("8_x8nov")]
+
+[node name="Receivers" parent="." instance=ExtResource("9_070r2")]
+
+[node name="Hints" parent="." instance=ExtResource("3_3fie0")]
+
+[node name="Next" type="Button" parent="."]
+offset_left = 1007.0
+offset_top = 545.0
+offset_right = 1132.0
+offset_bottom = 614.0
+text = "Next"
+
+[node name="Previous" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 552.0
+offset_right = 148.0
+offset_bottom = 624.0
+text = "Previous"
+
+[connection signal="mouse_entered" from="Next" to="." method="_on_next_mouse_entered"]
+[connection signal="mouse_exited" from="Next" to="." method="_on_next_mouse_exited"]
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
+[connection signal="mouse_entered" from="Previous" to="." method="_on_previous_mouse_entered"]
+[connection signal="mouse_exited" from="Previous" to="." method="_on_previous_mouse_exited"]
+[connection signal="pressed" from="Previous" to="." method="_on_previous_pressed"]
