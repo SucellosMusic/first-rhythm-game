@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://4nwl5v5p1sqm"]
+
+[ext_resource type="Texture2D" uid="uid://cp8ri7ao2f5pq" path="res://Sprites/Hints/EQ Tri Hint.png" id="1_on1q8"]
+
+[node name="EQ Triangle Hint" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -19)
+texture = ExtResource("1_on1q8")

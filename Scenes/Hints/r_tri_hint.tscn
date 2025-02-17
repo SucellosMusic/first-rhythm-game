@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfrxj2lsh51qj"]
+
+[ext_resource type="Texture2D" uid="uid://c0yx1annmupj8" path="res://Sprites/Hints/R Tri Hint.png" id="1_q88j7"]
+
+[node name="R Tri Hint" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(85, -102)
+texture = ExtResource("1_q88j7")
