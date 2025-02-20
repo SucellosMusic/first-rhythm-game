@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1s6kaaw7tf2l"]
+
+[ext_resource type="PackedScene" uid="uid://cjtehkfy71gwp" path="res://Scenes/Receiver Shapes/equal_triangle_receiver.tscn" id="1_bqva5"]
+[ext_resource type="PackedScene" uid="uid://ss20cocnn4wv" path="res://Scenes/Receiver Shapes/heart_receiver.tscn" id="2_omco0"]
+[ext_resource type="PackedScene" uid="uid://cuj0kpfsqg0hy" path="res://Scenes/Receiver Shapes/L_receiver.tscn" id="3_0x1j2"]
+[ext_resource type="PackedScene" uid="uid://dk7wkos5wlk83" path="res://Scenes/Receiver Shapes/pentagon_receiver.tscn" id="4_1y1c4"]
+[ext_resource type="PackedScene" uid="uid://dgdcniktoenve" path="res://Scenes/Receiver Shapes/right_triangle_receiver.tscn" id="5_nk15x"]
+[ext_resource type="PackedScene" uid="uid://du6dfb804n6n7" path="res://Scenes/Receiver Shapes/star_receiver.tscn" id="6_q52ie"]
+[ext_resource type="PackedScene" uid="uid://ccwctama4o67d" path="res://Scenes/Receiver Shapes/t_receiver.tscn" id="7_icpmp"]
+
+[node name="Alt Receivers" type="Node2D"]
+
+[node name="Equal Triangle Receiver" parent="." instance=ExtResource("1_bqva5")]
+position = Vector2(115, -976)
+
+[node name="Heart Receiver" parent="." instance=ExtResource("2_omco0")]
+position = Vector2(315, -1002)
+
+[node name="L Receiver" parent="." instance=ExtResource("3_0x1j2")]
+position = Vector2(523, -957)
+
+[node name="Pentagon Receiver" parent="." instance=ExtResource("4_1y1c4")]
+position = Vector2(780, -1017)
+
+[node name="Right Triangle Receiver" parent="." instance=ExtResource("5_nk15x")]
+position = Vector2(1186, -924)
+
+[node name="Star Receiver" parent="." instance=ExtResource("6_q52ie")]
+position = Vector2(1023, -1004)
+
+[node name="T Receiver" parent="." instance=ExtResource("7_icpmp")]
+position = Vector2(1500, -995)

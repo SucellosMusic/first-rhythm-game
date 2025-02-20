@@ -7,16 +7,19 @@ extends Node2D
 #scenes
 @onready var welcome : Control = $Welcome
 @onready var intros : Array = $"Shapes, Receivers, and Hints".get_children()
+@onready var paths : Control = $Paths
 
 #shape scenes
 @onready var shapes : Array = $"Assigned Shapes".get_children()
 @onready var receivers : Array = $Receivers.get_children()
+@onready var altReceivers : Array = $"Alt Receivers".get_children()
 @onready var hints : Array = $Hints.get_children()
 var shapeSelect : int = 0
 var prevShape : int;
 var shapeStorage  = Vector2(-500, 150)
 var receiverStorage = Vector2(-500, 400)
 var hintStorage = Vector2(-500, 650)
+var altReceiverStorage = Vector2(-500, 900)
 
 #misc
 @onready var sceneCounter : int = 0;
@@ -25,8 +28,10 @@ var shapesActive : bool;
 func _ready() -> void:
 	for i in intros:
 		i.visible = false
-	to_scene()
 	
+	paths.visible = false
+	to_scene()
+
 func cycle_shapes() -> void:
 	prevShape = shapeSelect
 	if Input.is_action_just_pressed("letter_A"):
@@ -34,7 +39,7 @@ func cycle_shapes() -> void:
 			shapeSelect = 0
 		else:
 			shapeSelect += 1
-			
+
 func place_receivers() -> void:
 	receivers[0].position = Vector2(150, 150)
 	receivers[1].position = Vector2(250, 350)
@@ -43,11 +48,11 @@ func place_receivers() -> void:
 	receivers[4].position = Vector2(650, 550)
 	receivers[5].position = Vector2(900, 350)
 	receivers[6].position = Vector2(1000, 150)
-	
+
 func store_receivers() -> void:
 	for r in receivers:
 		r.position = receiverStorage
-		
+
 func place_hints() -> void:
 	hints[0].position = Vector2(150, 150)
 	hints[1].position = Vector2(250, 350)
@@ -56,10 +61,18 @@ func place_hints() -> void:
 	hints[4].position = Vector2(650, 550)
 	hints[5].position = Vector2(900, 350)
 	hints[6].position = Vector2(1000, 150)
-	
+
 func store_hints() -> void:
 	for h in hints:
 		h.position = hintStorage
+		
+
+func place_example_paths() ->void:
+	receivers[0].position = Vector2(750, 500)
+	hints[0].position = Vector2(950, 500)
+	altReceivers[0].position = Vector2(200, 450)
+	altReceivers[0].rotation_degrees = -45
+	
 
 func to_scene() -> void:
 	match sceneCounter:
@@ -90,10 +103,15 @@ func to_scene() -> void:
 			place_hints()
 			intros[2].visible = false
 			intros[3].visible = true
+		5:
+			store_hints()
+			place_example_paths()
+			intros[3].visible = false
+			paths.visible = true
 			next.disabled = true
 
 func _on_next_pressed() -> void:
-	if sceneCounter <= 4:
+	if sceneCounter <= 5:
 		sceneCounter += 1
 		to_scene()
 

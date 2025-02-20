@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d0jbkh7knwqo"]
 
-[ext_resource type="Script" path="res://Scripts/receivers.gd" id="1_d8433"]
 [ext_resource type="PackedScene" uid="uid://cjtehkfy71gwp" path="res://Scenes/Receiver Shapes/equal_triangle_receiver.tscn" id="2_8o0w6"]
+[ext_resource type="Script" path="res://Scripts/play_animation.gd" id="3_d4lw6"]
 [ext_resource type="PackedScene" uid="uid://ss20cocnn4wv" path="res://Scenes/Receiver Shapes/heart_receiver.tscn" id="3_ygxva"]
 [ext_resource type="PackedScene" uid="uid://cuj0kpfsqg0hy" path="res://Scenes/Receiver Shapes/L_receiver.tscn" id="4_tt3fj"]
 [ext_resource type="PackedScene" uid="uid://dk7wkos5wlk83" path="res://Scenes/Receiver Shapes/pentagon_receiver.tscn" id="5_mbe06"]
@@ -10,25 +10,31 @@
 [ext_resource type="PackedScene" uid="uid://ccwctama4o67d" path="res://Scenes/Receiver Shapes/t_receiver.tscn" id="8_k5m46"]
 
 [node name="Receivers" type="Node2D"]
-script = ExtResource("1_d8433")
 
 [node name="Equal Triangle Receiver" parent="." instance=ExtResource("2_8o0w6")]
-position = Vector2(109, -382)
+position = Vector2(126, -375)
+script = ExtResource("3_d4lw6")
 
 [node name="Heart Receiver" parent="." instance=ExtResource("3_ygxva")]
-position = Vector2(285, -429)
+position = Vector2(302, -423)
+script = ExtResource("3_d4lw6")
 
 [node name="L Receiver" parent="." instance=ExtResource("4_tt3fj")]
 position = Vector2(473, -360)
+script = ExtResource("3_d4lw6")
 
 [node name="Pentagon Receiver" parent="." instance=ExtResource("5_mbe06")]
 position = Vector2(719, -431)
+script = ExtResource("3_d4lw6")
 
 [node name="Right Triangle Receiver" parent="." instance=ExtResource("6_gd2tm")]
 position = Vector2(1130, -336)
+script = ExtResource("3_d4lw6")
 
 [node name="Star Receiver" parent="." instance=ExtResource("7_l0t8k")]
 position = Vector2(956, -424)
+script = ExtResource("3_d4lw6")
 
 [node name="T Receiver" parent="." instance=ExtResource("8_k5m46")]
 position = Vector2(1423, -436)
+script = ExtResource("3_d4lw6")

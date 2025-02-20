@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://w22k3usnehtp"]
+[gd_scene load_steps=7 format=3 uid="uid://w22k3usnehtp"]
 
 [ext_resource type="Script" path="res://Scenes/Tutorial/tutorial.gd" id="1_l2mb1"]
 [ext_resource type="PackedScene" uid="uid://b4e80mv55y453" path="res://Scenes/hints.tscn" id="3_3fie0"]
+[ext_resource type="PackedScene" uid="uid://d1s6kaaw7tf2l" path="res://Scenes/alt_receivers.tscn" id="4_ds0yj"]
 [ext_resource type="PackedScene" uid="uid://cfyncxwjlvw0v" path="res://Scenes/assigned_shapes.tscn" id="8_x8nov"]
 [ext_resource type="PackedScene" uid="uid://d0jbkh7knwqo" path="res://Scenes/receivers.tscn" id="9_070r2"]
 
@@ -42,13 +43,13 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Shapes, Receivers, and Hints" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
 [node name="intro" type="Label" parent="Shapes, Receivers, and Hints"]
-visible = false
 layout_mode = 0
 offset_left = 328.0
 offset_top = 24.0
@@ -65,7 +66,6 @@ click 'Next' to proceed"
 horizontal_alignment = 1
 
 [node name="intro to shapes" type="Label" parent="Shapes, Receivers, and Hints"]
-visible = false
 layout_mode = 0
 offset_left = 234.0
 offset_top = 23.0
@@ -92,7 +92,6 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="intro to hints" type="Label" parent="Shapes, Receivers, and Hints"]
-visible = false
 layout_mode = 0
 offset_left = 308.0
 offset_top = 22.0
@@ -107,9 +106,49 @@ When you're ready, press 'Next'
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="Paths" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Paths"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 24.0
+offset_right = 1098.0
+offset_bottom = 203.0
+scale = Vector2(1.02745, 1.62503)
+text = "A key feature of Shape Beats is that the player gets to choose how the track progresses by choosing one of two versions of the same shape that will be distinguished by their rotation and will not be animated.
+
+Once the player has chosen a \"path\" the music will go on to the next secion. When these choices will occur will vary, but will always be some interval of 8, and the choice will be presented a couple beats early in constrast to the hint.
+
+Example below: On the right side is the regular path, and on the left is the rotated and unanimated alternate path. "
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Survival" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Survival"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 143.0
+offset_right = 833.0
+offset_bottom = 300.0
+text = "Survival in Shape Beats is baseed on misses vs hits. You start every game with 3 hearts, and lose a heart for every miss. You can regain hearts by getting perfects on the heart shape."
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Assigned Shapes" parent="." instance=ExtResource("8_x8nov")]
 
 [node name="Receivers" parent="." instance=ExtResource("9_070r2")]
+
+[node name="Alt Receivers" parent="." instance=ExtResource("4_ds0yj")]
 
 [node name="Hints" parent="." instance=ExtResource("3_3fie0")]
 

@@ -12,3 +12,5 @@ func _process(_float) -> void:
 			
 		if Input.is_action_just_pressed("ui_mouse_right_click"):
 			self.rotation_degrees = currRotation + 45
+	else:
+		self.rotation_degrees = 0
