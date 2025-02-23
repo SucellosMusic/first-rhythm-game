@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d0jbkh7knwqo"]
 
 [ext_resource type="PackedScene" uid="uid://cjtehkfy71gwp" path="res://Scenes/Receiver Shapes/equal_triangle_receiver.tscn" id="2_8o0w6"]
-[ext_resource type="Script" path="res://Scripts/play_animation.gd" id="3_d4lw6"]
+[ext_resource type="Script" path="res://Scenes/Receiver Shapes/scripts/play_animation.gd" id="3_d4lw6"]
 [ext_resource type="PackedScene" uid="uid://ss20cocnn4wv" path="res://Scenes/Receiver Shapes/heart_receiver.tscn" id="3_ygxva"]
 [ext_resource type="PackedScene" uid="uid://cuj0kpfsqg0hy" path="res://Scenes/Receiver Shapes/L_receiver.tscn" id="4_tt3fj"]
 [ext_resource type="PackedScene" uid="uid://dk7wkos5wlk83" path="res://Scenes/Receiver Shapes/pentagon_receiver.tscn" id="5_mbe06"]

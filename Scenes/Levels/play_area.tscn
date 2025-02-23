@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://dg4jq7vwylhv8"]
 
-[ext_resource type="Script" path="res://Scripts/play_area.gd" id="1_h34r3"]
+[ext_resource type="Script" path="res://Scenes/Levels/play_area.gd" id="1_h34r3"]
 [ext_resource type="PackedScene" uid="uid://cjtehkfy71gwp" path="res://Scenes/Receiver Shapes/equal_triangle_receiver.tscn" id="2_05tja"]
 [ext_resource type="PackedScene" uid="uid://dtyc21mp0igxq" path="res://Scenes/Assigned Shapes/player_equal_triangle.tscn" id="3_d4epq"]
 [ext_resource type="PackedScene" uid="uid://bghxi2dd62e5f" path="res://Scenes/Assigned Shapes/player_heart.tscn" id="4_wynvf"]

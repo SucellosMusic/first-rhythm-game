@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://w22k3usnehtp"]
 
 [ext_resource type="Script" path="res://Scenes/Tutorial/tutorial.gd" id="1_l2mb1"]
-[ext_resource type="PackedScene" uid="uid://b4e80mv55y453" path="res://Scenes/hints.tscn" id="3_3fie0"]
-[ext_resource type="PackedScene" uid="uid://d1s6kaaw7tf2l" path="res://Scenes/alt_receivers.tscn" id="4_ds0yj"]
-[ext_resource type="PackedScene" uid="uid://cfyncxwjlvw0v" path="res://Scenes/assigned_shapes.tscn" id="8_x8nov"]
-[ext_resource type="PackedScene" uid="uid://d0jbkh7knwqo" path="res://Scenes/receivers.tscn" id="9_070r2"]
+[ext_resource type="PackedScene" uid="uid://b4e80mv55y453" path="res://Scenes/Hints/hints.tscn" id="3_3fie0"]
+[ext_resource type="PackedScene" uid="uid://d1s6kaaw7tf2l" path="res://Scenes/Receiver Shapes/alt_receivers.tscn" id="4_ds0yj"]
+[ext_resource type="PackedScene" uid="uid://cfyncxwjlvw0v" path="res://Scenes/Assigned Shapes/assigned_shapes.tscn" id="8_x8nov"]
+[ext_resource type="PackedScene" uid="uid://d0jbkh7knwqo" path="res://Scenes/Receiver Shapes/receivers.tscn" id="9_070r2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gnwyh"]
 font_size = 36
