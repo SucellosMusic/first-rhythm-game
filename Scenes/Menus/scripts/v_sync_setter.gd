@@ -7,14 +7,7 @@ func _ready() -> void:
 	else:
 		self.text = "Disabled"
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-
-
-func _on_toggled(toggled_on: bool) -> void:
+func _on_toggled(_toggled_on: bool) -> void:
 	if self.button_pressed == true:
 		self.text = "Enabled"
 	else:
