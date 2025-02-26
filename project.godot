@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-AudioSync="*res://audio_sync.gd"
+AudioSync="*res://Scenes/Menus/scripts/audio_sync.gd"
 
 [display]
 

@@ -8,6 +8,7 @@ extends Node2D
 @onready var welcome : Control = $Welcome
 @onready var intros : Array = $"Shapes, Receivers, and Hints".get_children()
 @onready var paths : Control = $Paths
+@onready var survival : Control = $Survival
 
 #shape scenes
 @onready var shapes : Array = $"Assigned Shapes".get_children()
@@ -30,11 +31,12 @@ func _ready() -> void:
 		i.visible = false
 	
 	paths.visible = false
+	survival.visible = false
 	to_scene()
 
 func cycle_shapes() -> void:
 	prevShape = shapeSelect
-	if Input.is_action_just_pressed("letter_A"):
+	if Input.is_action_just_pressed("Input Shape"):
 		if shapeSelect == 6:
 			shapeSelect = 0
 		else:
@@ -73,6 +75,12 @@ func place_example_paths() ->void:
 	altReceivers[0].position = Vector2(200, 450)
 	altReceivers[0].rotation_degrees = -45
 	
+func store_example_paths() -> void:
+	receivers[0].position = receiverStorage
+	hints[0].position = hintStorage
+	altReceivers[0].position = altReceiverStorage
+	altReceivers[0].rotation_degrees = 0
+	
 
 func to_scene() -> void:
 	match sceneCounter:
@@ -97,8 +105,8 @@ func to_scene() -> void:
 			intros[1].visible = false
 			intros[2].visible = true
 			intros[3].visible = false
-			next.disabled = false
 		4:
+			store_example_paths()
 			store_receivers()
 			place_hints()
 			intros[2].visible = false
@@ -108,12 +116,20 @@ func to_scene() -> void:
 			place_example_paths()
 			intros[3].visible = false
 			paths.visible = true
-			next.disabled = true
+			survival.visible = false
+			next.disabled = false
+		6:
+			store_example_paths()
+			survival.visible = true
+			paths.visible = false
+			next.set_text("Back to Menu")
 
 func _on_next_pressed() -> void:
-	if sceneCounter <= 5:
+	if sceneCounter <= 6:
 		sceneCounter += 1
 		to_scene()
+	if sceneCounter > 6:
+		get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 
 func _on_previous_pressed() -> void:
 	if sceneCounter >= 0:

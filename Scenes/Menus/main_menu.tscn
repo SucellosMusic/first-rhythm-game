@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://i48jfqqktl3u"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/audio_settings.gd" id="1_0wm25"]
-[ext_resource type="Script" path="res://Scenes/Menus/controls.gd" id="1_1w83y"]
+[ext_resource type="Script" path="res://Scenes/Menus/scripts/audio_settings.gd" id="1_0wm25"]
+[ext_resource type="Script" path="res://Scenes/Menus/scripts/controls.gd" id="1_1w83y"]
+[ext_resource type="Script" path="res://Scenes/Menus/play.gd" id="1_rtnjg"]
 [ext_resource type="Script" path="res://Scenes/Menus/scripts/v_sync_setter.gd" id="1_yo88m"]
-[ext_resource type="Script" path="res://Scenes/Menus/video_settings.gd" id="2_bfhna"]
-[ext_resource type="Script" path="res://Scenes/Menus/sync.gd" id="5_fhi10"]
+[ext_resource type="Script" path="res://Scenes/Menus/scripts/video_settings.gd" id="2_bfhna"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -35,7 +35,16 @@ all_tabs_in_front = true
 
 [node name="Play" type="Control" parent="TabContainer"]
 layout_mode = 2
+script = ExtResource("1_rtnjg")
 metadata/_tab_index = 0
+
+[node name="Tutorial" type="Button" parent="TabContainer/Play"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 97.0
+offset_right = 576.0
+offset_bottom = 161.0
+text = "Tutorial"
 
 [node name="Controls" type="Control" parent="TabContainer"]
 visible = false
@@ -286,12 +295,7 @@ offset_right = 411.063
 offset_bottom = 48.0
 rounded = true
 
-[node name="Sync" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("5_fhi10")
-metadata/_tab_index = 4
-
+[connection signal="pressed" from="TabContainer/Play/Tutorial" to="TabContainer/Play" method="_on_tutorial_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/Rotate Left/Rotate Left One" to="TabContainer/Controls" method="_on_rotate_left_one_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/Rotate Left/Rotate Left Two" to="TabContainer/Controls" method="_on_rotate_left_two_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/Rotate Right/Rotate Right One" to="TabContainer/Controls" method="_on_rotate_right_one_pressed"]
