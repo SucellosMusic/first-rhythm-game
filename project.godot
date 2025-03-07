@@ -15,10 +15,6 @@ run/main_scene="res://Scenes/Levels/play_area.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-AudioSync="*res://Scenes/Menus/scripts/audio_sync.gd"
-
 [display]
 
 window/stretch/mode="viewport"

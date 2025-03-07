@@ -1,9 +1,5 @@
 extends Node2D
 
-#UI
-@onready var startButton : Button = $Start
-@onready var instructions : Label = $Instructions
-
 #Audio
 @onready var audioPlayer : AudioStreamPlayer = $AudioStreamPlayer
 
@@ -13,15 +9,7 @@ extends Node2D
 @onready var altReceivers = $"Alt Receivers".get_children()
 @onready var hints = $Hints.get_children()
 
-#path
-@onready var pathFollow : PathFollow2D = $"Path2D/PathFollow2D"
-@onready var pathFollowTwo : PathFollow2D = $Path2D/PathFollow2D2
-@onready var receiverPos : Node2D = $"Path2D/PathFollow2D/Receiver Positioner"
-@onready var hintPos : Node2D = $"Path2D/PathFollow2D2/Hint Positioner"
-
-#Sequences
-@export_range(0, 6) var receiverPattern : Array[int];
-@export_range(-135, 180, 45) var receiverOrientation : Array[int]
+#Sequencer
 var hintSelection : int = 1
 var selection : int = 0
 var currSelection : int;
@@ -36,12 +24,14 @@ var shapePerf : Array[Area2D] = []
 var shapeGreat : Array[Area2D] = []
 var shapeOkay : Array[Area2D] = []
 
+
 #time
 @onready var syncToStart : float = AudioServer.get_time_to_next_mix()
 @export var bpm : float;
-@onready var beats : float = (1/bpm)*60
 @onready var beatTimer : Timer = $Beats
 @export var beatOffset : float;
+@onready var beat : float = (60/bpm)
+
 
 #misc var
 @onready var shapeSTORAGE = Vector2(-500, 400)
@@ -62,6 +52,7 @@ var takeScore : bool = false
 
 
 func _ready() ->void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	for s in shapes:
 		s.position = shapeSTORAGE
 		shapePerf.append(s.get_child(1))
@@ -82,16 +73,12 @@ func _ready() ->void:
 	for ara in altRecAnimate:
 		ara.play()
 
-	pathFollowTwo.progress = 200
-	
-func _on_start_pressed() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 	audioPlayer.play()
 	beatTimer.start(syncToStart + beatOffset)
+
 	next_shape()
 	startSequence = true
-	startButton.hide()
-	instructions.hide()
 	
 
 func get_score() -> void:
@@ -139,37 +126,27 @@ func next_shape() -> void:
 		hintSelection = 0
 	else:
 		hintSelection += 1
-	
-	
-	currSelection = receiverPattern[selection]
-	currRotation = receiverOrientation[selection]
-	hintCurrSelection = receiverPattern[hintSelection]
-	hintRotation = receiverOrientation[hintSelection]
-	
-	
+
 
 func _on_in_timer_timeout() -> void:
-	beatTimer.start(beats)
+	beatTimer.start(beat)
 	next_shape()
 	startSequence = true
 	takeScore = true
-	pathFollow.progress += 200
-	pathFollowTwo.progress += 200
 
 func _process(delta: float) -> void:
 	hints[hintPrevSelection].position = hintsStorage
 	receivers[prevSelection].position = receiverSTORAGE
 	shapes[prevSelection].position = shapeSTORAGE
 	
-	hints[hintCurrSelection].position = hintPos.global_position
+
 	hints[hintCurrSelection].rotation_degrees = hintRotation
 	
 	if startSequence == true:
-		receivers[currSelection].position = receiverPos.global_position
 		receivers[currSelection].rotation_degrees = currRotation
 		shapes[currSelection].position = get_local_mouse_position()
 	
-	if Input.is_action_just_pressed("letter_A"):
+	if Input.is_action_just_pressed("Input Shape"):
 		get_score()
 		scoreDisplay.text = str(totalScore)
 		

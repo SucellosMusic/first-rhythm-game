@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://elgpgmehfkrw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6k64h"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_6gwfb"]
+font_size = 62
+
+[node name="Score Text" type="Label"]
+offset_top = 568.0
+offset_right = 198.0
+offset_bottom = 669.0
+text = "Score: "
+label_settings = SubResource("LabelSettings_6k64h")
+
+[node name="Score Int" type="Label" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = -8.0
+offset_right = 504.0
+offset_bottom = 78.0
+label_settings = SubResource("LabelSettings_6gwfb")
