@@ -16,6 +16,8 @@
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_s7wna")
 
+[node name="Beats" type="Timer" parent="."]
+
 [node name="Assigned Shapes" parent="." instance=ExtResource("1_23prg")]
 
 [node name="Hints" parent="." instance=ExtResource("2_qll7g")]
@@ -23,8 +25,6 @@ script = ExtResource("1_s7wna")
 [node name="Alt Receivers" parent="." instance=ExtResource("3_7ky36")]
 
 [node name="Receivers" parent="." instance=ExtResource("4_i70i7")]
-
-[node name="Beats" type="Timer" parent="."]
 
 [node name="Score Text" parent="." instance=ExtResource("5_q7k4a")]
 z_index = 10

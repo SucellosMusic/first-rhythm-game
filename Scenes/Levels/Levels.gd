@@ -3,9 +3,6 @@ extends Node2D
 #audio sequences
 @onready var audioPlayer : AudioStreamPlayer = $AudioStreamPlayer
 
-#shape sequences
-@onready var sequenceOne = $SequencerA
-
 #shapes
 @onready var shapes = $"Assigned Shapes".get_children()
 @onready var hints = $Hints.get_children()
