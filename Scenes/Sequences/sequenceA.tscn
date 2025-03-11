@@ -10,8 +10,8 @@ point_count = 4
 
 [node name="SequenceA" type="Node"]
 script = ExtResource("1_jtd8y")
-hintStart = 200
 incrementValue = 200
+hintStart = 200
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(120, 72)
