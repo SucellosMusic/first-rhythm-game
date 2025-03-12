@@ -1,5 +1,8 @@
 extends Node2D
 
+#sequencer
+@onready var sequencer = $Sequencer
+
 #audio sequences
 @onready var audioPlayer : AudioStreamPlayer = $AudioStreamPlayer
 
@@ -52,6 +55,10 @@ func _ready() -> void:
 		
 	for h in hints:
 		h.position = hintsStorage
+	
+	sequencer.set_initial_positions()
+	sequencer.zero_values()
+	sequencer.set_initial_sequence()
 
 
 func _process(delta: float) -> void:

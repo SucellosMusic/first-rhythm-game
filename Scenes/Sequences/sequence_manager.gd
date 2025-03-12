@@ -9,12 +9,6 @@ var currSequenceValues : int = 0;
 @onready var altRec = $"../Alt Receivers".get_children()
 var collider : Array[Area2D];
 
-#storage
-@onready var shapeSTORAGE = Vector2(-500, 400)
-@onready var receiverSTORAGE = Vector2(-500, 150)
-@onready var altReceiverStorage = Vector2(-500, 650)
-@onready var hintsStorage = Vector2(-500, 900)
-
 #sequence values
 var recShape : int;
 var hintShape : int;
@@ -26,8 +20,14 @@ var nextBeat : int;
 func _ready() -> void:
 	for a in altRec:
 		collider.append(a.get_child(1))
+		
+func set_initial_sequence() -> void:
+	currSequence = 0
 
-func set_current_sequence(selection : Area2D) -> void:
+func zero_values() -> void:
+	currSequenceValues = 0
+
+func set_next_sequence(selection : Area2D) -> void:
 	for c in collider:
 		if c.has_overlapping_areas():
 			if currSequence >= self.get_child_count() - 2:
@@ -40,9 +40,6 @@ func set_current_sequence(selection : Area2D) -> void:
 			else:
 				currSequence += 1
 
-func zero_values() -> void:
-	currSequenceValues = 0
-	
 func increment_values() -> void:
 	currSequenceValues += 1
 	recShape = sequences[currSequence].receiverPattern[currSequenceValues]
