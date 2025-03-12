@@ -15,6 +15,14 @@ var collider : Array[Area2D];
 @onready var altReceiverStorage = Vector2(-500, 650)
 @onready var hintsStorage = Vector2(-500, 900)
 
+#sequence values
+var recShape : int;
+var hintShape : int;
+var recOrient : int;
+var hintOrient : int;
+var nextBeat : int;
+
+
 func _ready() -> void:
 	for a in altRec:
 		collider.append(a.get_child(1))
@@ -37,6 +45,11 @@ func zero_values() -> void:
 	
 func increment_values() -> void:
 	currSequenceValues += 1
+	recShape = sequences[currSequence].receiverPattern[currSequenceValues]
+	hintShape = sequences[currSequence].hintPatter[currSequenceValues]
+	recOrient = sequences[currSequence].receiverOrientation[currSequenceValues]
+	hintOrient = sequences[currSequence].hintOrientation[currSequenceValues]
+	nextBeat = sequences[currSequence].nextBeat[currSequenceValues]
 
 func set_initial_positions() -> void:
 	for s in sequences:
