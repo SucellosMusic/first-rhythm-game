@@ -23,6 +23,7 @@ var shapeOkay : Array[Area2D] = []
 @onready var beatTimer : Timer = $Beats
 @export var beatOffset : float;
 @onready var beat : float = (60/bpm)
+var beatOne : bool = true;
 
 #scoring
 @onready var scoreDisplay : Label = $"Score Text"
@@ -32,7 +33,7 @@ var timePoint : int = 0
 var totalScore : int = 0
 var takeScore : bool = false
 
-#misc var
+#storage
 @onready var shapeSTORAGE = Vector2(-500, 400)
 @onready var receiverSTORAGE = Vector2(-500, 150)
 @onready var altReceiverStorage = Vector2(-500, 650)
@@ -55,14 +56,31 @@ func _ready() -> void:
 		
 	for h in hints:
 		h.position = hintsStorage
+		
 	
 	sequencer.set_initial_positions()
-	sequencer.zero_values()
-	sequencer.set_initial_sequence()
+		
+	beatTimer.start(syncToStart + beatOffset)
+	
+
+func _on_beats_timeout() -> void:
+	beatTimer.start(beat * sequencer.nextBeat)
+	if beatOne:
+		sequencer.set_initial_sequence()
+		sequencer.set_initial_values()
+		beatOne = false
+	else:
+		sequencer.increment_values()
+		sequencer.set_next_position()
+		
+	receivers[sequencer.recShape].position = sequencer.recPos
+	hints[sequencer.hintShape].position = sequencer.hintPos
+	receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
+	hints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient
 
 
 func _process(delta: float) -> void:
-	pass
+	shapes[sequencer.recShape].position = get_global_mouse_position()
 
 func get_total_score() -> void:
 	if takeScore == true:

@@ -1,6 +1,6 @@
 extends Node2D
 
-var currRotation : int;
+var currRotation : float;
 
 
 

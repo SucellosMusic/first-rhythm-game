@@ -2,9 +2,7 @@ extends Node
 
 #positions
 @onready var recPosSetter : PathFollow2D = $"Path2D/Receiver Position Setter"
-@onready var recPosition : Node2D = $"Path2D/Receiver Position Setter/Receiver Position"
 @onready var hintPosSetter : PathFollow2D = $"Path2D/Hint Position Setter"
-@onready var hintPosition : Node2D = $"Path2D/Hint Position Setter/Hint Position"
 
 #exports
 @export_range(0, 6) var receiverPattern : Array[int];

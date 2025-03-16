@@ -7,7 +7,7 @@ var currSequenceValues : int = 0;
 
 #area2d
 @onready var altRec = $"../Alt Receivers".get_children()
-var collider : Array[Area2D];
+var altRecCollider : Array[Area2D];
 
 #sequence values
 var recShape : int;
@@ -15,35 +15,28 @@ var hintShape : int;
 var recOrient : int;
 var hintOrient : int;
 var nextBeat : int;
+var recPos : Vector2;
+var hintPos : Vector2;
 
 
 func _ready() -> void:
 	for a in altRec:
-		collider.append(a.get_child(1))
+		altRecCollider.append(a.get_child(1))
 		
 func set_initial_sequence() -> void:
 	currSequence = 0
 
-func zero_values() -> void:
+func set_initial_values() -> void:
 	currSequenceValues = 0
-
-func set_next_sequence(selection : Area2D) -> void:
-	for c in collider:
-		if c.has_overlapping_areas():
-			if currSequence >= self.get_child_count() - 2:
-				currSequence = 0
-			else:
-				currSequence += 2
-		else:
-			if currSequence == self.get_child_count():
-				currSequence = 0
-			else:
-				currSequence += 1
+	assign_values()
 
 func increment_values() -> void:
 	currSequenceValues += 1
+	assign_values()
+
+func assign_values() -> void:
 	recShape = sequences[currSequence].receiverPattern[currSequenceValues]
-	hintShape = sequences[currSequence].hintPatter[currSequenceValues]
+	hintShape = sequences[currSequence].hintPattern[currSequenceValues]
 	recOrient = sequences[currSequence].receiverOrientation[currSequenceValues]
 	hintOrient = sequences[currSequence].hintOrientation[currSequenceValues]
 	nextBeat = sequences[currSequence].nextBeat[currSequenceValues]
@@ -55,3 +48,19 @@ func set_initial_positions() -> void:
 
 func set_next_position() -> void:
 	sequences[currSequence].recPosSetter.progress += sequences[currSequence].incrementValue
+	sequences[currSequence].hintPosSetter.progress += sequences[currSequence].incrementValue
+	recPos = sequences[currSequence].recPosSetter.position
+	hintPos = sequences[currSequence].hintPosSetter.position
+
+func set_next_sequence() -> void:
+	for c in altRecCollider:
+		if c.has_overlapping_areas():
+			if currSequence >= self.get_child_count() - 2:
+				currSequence = 0
+			else:
+				currSequence += 2
+		else:
+			if currSequence == self.get_child_count():
+				currSequence = 0
+			else:
+				currSequence += 1
