@@ -74,7 +74,9 @@ func _on_beats_timeout() -> void:
 	else:
 		sequencer.increment_values()
 		sequencer.set_next_position()
-		
+	
+	
+	
 	receivers[sequencer.recShape].position = sequencer.recPos
 	hints[sequencer.hintShape].position = sequencer.hintPos
 	receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient

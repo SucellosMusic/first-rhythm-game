@@ -31,7 +31,10 @@ func set_initial_values() -> void:
 	assign_values()
 
 func increment_values() -> void:
-	currSequenceValues += 1
+	if currSequenceValues == sequences[currSequence].receiverPattern.size() - 1:
+		currSequenceValues = 0
+	else: 
+		currSequenceValues += 1
 	assign_values()
 
 func assign_values() -> void:
