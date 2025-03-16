@@ -58,16 +58,18 @@ func _ready() -> void:
 		h.position = hintsStorage
 		
 	
+	sequencer.set_initial_sequence()
 	sequencer.set_initial_positions()
-		
+	sequencer.set_initial_values()
+	
+	audioPlayer.play()
 	beatTimer.start(syncToStart + beatOffset)
 	
 
 func _on_beats_timeout() -> void:
 	beatTimer.start(beat * sequencer.nextBeat)
 	if beatOne:
-		sequencer.set_initial_sequence()
-		sequencer.set_initial_values()
+		sequencer.set_next_position()
 		beatOne = false
 	else:
 		sequencer.increment_values()

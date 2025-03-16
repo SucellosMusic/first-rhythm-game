@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpkjgdxj4w1c3"]
+[gd_scene load_steps=14 format=3 uid="uid://bpkjgdxj4w1c3"]
 
 [ext_resource type="PackedScene" uid="uid://cfyncxwjlvw0v" path="res://Scenes/Assigned Shapes/assigned_shapes.tscn" id="1_23prg"]
 [ext_resource type="Script" path="res://Scenes/Levels/Levels.gd" id="1_s7wna"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d0jbkh7knwqo" path="res://Scenes/Receiver Shapes/receivers.tscn" id="4_i70i7"]
 [ext_resource type="PackedScene" uid="uid://elgpgmehfkrw" path="res://Scenes/score_text.tscn" id="5_q7k4a"]
 [ext_resource type="PackedScene" uid="uid://dng3h5awxp8ai" path="res://Scenes/Sequences/sequenceA.tscn" id="7_i1218"]
+[ext_resource type="AudioStream" uid="uid://btf6gu57t3fvj" path="res://Audio/WIP.wav" id="7_n7l43"]
 [ext_resource type="Script" path="res://Scenes/Sequences/sequence_manager.gd" id="7_p44fw"]
 [ext_resource type="PackedScene" uid="uid://58fdkmw6jve0" path="res://Scenes/Sequences/sequenceB.tscn" id="9_tq3wd"]
 [ext_resource type="PackedScene" uid="uid://d0jp0dgwghf53" path="res://Scenes/Sequences/sequenceC.tscn" id="10_1c17x"]
@@ -32,13 +33,15 @@ beatOffset = 0.75
 z_index = 10
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_n7l43")
+volume_db = -24.741
 
 [node name="Sequencer" type="Node" parent="."]
 script = ExtResource("7_p44fw")
 
 [node name="SequenceA" parent="Sequencer" instance=ExtResource("7_i1218")]
 receiverPattern = Array[int]([0, 1, 2, 3, 4, 5, 6])
-hintPattern = Array[int]([0, 1, 2, 3, 4, 5, 6])
+hintPattern = Array[int]([1, 2, 3, 4, 5, 6, 0])
 receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
 hintOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
 nextBeat = Array[int]([1, 1, 1, 1, 1, 1, 1])
