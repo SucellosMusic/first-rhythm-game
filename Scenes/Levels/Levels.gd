@@ -38,6 +38,9 @@ var takeScore : bool = false
 @onready var receiverSTORAGE = Vector2(-500, 150)
 @onready var altReceiverStorage = Vector2(-500, 650)
 @onready var hintsStorage = Vector2(-500, 900)
+var prevRec;
+var prevHint;
+var prevShape;
 
 
 func _ready() -> void:
@@ -74,17 +77,27 @@ func _on_beats_timeout() -> void:
 	else:
 		sequencer.increment_values()
 		sequencer.set_next_position()
-	
-	
+		
+	if prevShape != null:
+		prevShape.position = shapeSTORAGE
+	if prevRec != null:
+		prevRec.position = receiverSTORAGE
+	if prevHint != null:
+		prevHint.position = hintsStorage
 	
 	receivers[sequencer.recShape].position = sequencer.recPos
 	hints[sequencer.hintShape].position = sequencer.hintPos
 	receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
 	hints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient
+	prevRec = receivers[sequencer.recShape]
+	prevHint = hints[sequencer.hintShape]
+	prevShape = shapes[sequencer.recShape]
+	
 
 
 func _process(delta: float) -> void:
 	shapes[sequencer.recShape].position = get_global_mouse_position()
+	
 
 func get_total_score() -> void:
 	if takeScore == true:
@@ -95,22 +108,22 @@ func get_total_score() -> void:
 		takeScore = false
 
 func get_position_score() -> int:
-	if shapePerf[0].has_overlapping_areas():
+	if shapePerf[shapes[sequencer.recShape]].has_overlapping_areas():
 		return 3
-	elif shapeGreat[0].has_overlapping_areas():
+	elif shapeGreat[shapes[sequencer.recShape]].has_overlapping_areas():
 		return 2
-	elif shapeOkay[0].has_overlapping_areas():
+	elif shapeOkay[shapes[sequencer.recShape]].has_overlapping_areas():
 		return 1
 	return 0
 
 func get_orient_score() -> int:
-	if shapeOkay[0].has_overlapping_areas():
-		if shapes[0].rotation == receivers[0].rotation:
+	if shapeOkay[shapes[sequencer.recShape]].has_overlapping_areas():
+		if shapes[shapes[sequencer.recShape]].rotation == receivers[shapes[sequencer.recShape]].rotation:
 			return 1
 	return 0
 
 func get_time_score() -> int:
-	if shapeOkay[0].has_overlapping_areas():
+	if shapeOkay[shapes[sequencer.recShape]].has_overlapping_areas():
 		if beatTimer.time_left > .01 && beatTimer.time_left < .3:
 			return 3
 		elif beatTimer.time_left > .3 && beatTimer.time_left < .6:

@@ -34,7 +34,7 @@ z_index = 10
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_n7l43")
-volume_db = -24.741
+volume_db = -9.622
 
 [node name="Sequencer" type="Node" parent="."]
 script = ExtResource("7_p44fw")
@@ -44,7 +44,7 @@ receiverPattern = Array[int]([0, 1, 2, 3, 4, 5, 6])
 hintPattern = Array[int]([1, 2, 3, 4, 5, 6, 0])
 receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
 hintOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
-nextBeat = Array[int]([1, 1, 1, 1, 1, 1, 1])
+nextBeat = Array[float]([1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0])
 
 [node name="SequenceB" parent="Sequencer" instance=ExtResource("9_tq3wd")]
 

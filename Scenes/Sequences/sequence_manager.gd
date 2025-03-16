@@ -14,7 +14,7 @@ var recShape : int;
 var hintShape : int;
 var recOrient : int;
 var hintOrient : int;
-var nextBeat : int;
+var nextBeat : float;
 var recPos : Vector2;
 var hintPos : Vector2;
 

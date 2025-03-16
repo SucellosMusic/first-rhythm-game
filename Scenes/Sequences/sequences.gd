@@ -9,7 +9,7 @@ extends Node
 @export_range(0, 6) var hintPattern : Array[int];
 @export_range(-135, 180, 45) var receiverOrientation : Array[int];
 @export_range(-135, 180, 45) var hintOrientation : Array[int];
-@export_enum("Eighth:.5", "Quarter:1", "Half:2", "Whole:4") var nextBeat : Array[int];
+@export_range(.5, 4, .5) var nextBeat : Array[float];
 @export var incrementValue : int;
 @export var hintStart : int;
 @export var posStart : int;
