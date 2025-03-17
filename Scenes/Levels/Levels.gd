@@ -16,6 +16,7 @@ extends Node2D
 var shapePerf : Array[Area2D] = []
 var shapeGreat : Array[Area2D] = []
 var shapeOkay : Array[Area2D] = []
+var altRecCollision : Array[Area2D] = []
 
 #time
 @onready var syncToStart : float = AudioServer.get_time_to_next_mix()
@@ -41,6 +42,7 @@ var takeScore : bool = false
 var prevRec;
 var prevHint;
 var prevShape;
+var prevAltRec;
 
 
 func _ready() -> void:
@@ -56,10 +58,10 @@ func _ready() -> void:
 	
 	for ar in altReceivers:
 		ar.position = altReceiverStorage
-		
+		altRecCollision.append(ar.get_child(1))
+	
 	for h in hints:
 		h.position = hintsStorage
-		
 	
 	sequencer.set_initial_sequence()
 	sequencer.set_initial_positions()
@@ -71,19 +73,23 @@ func _ready() -> void:
 
 func _on_beats_timeout() -> void:
 	beatTimer.start(beat * sequencer.nextBeat)
+	takeScore = true
 	if beatOne:
 		sequencer.set_next_position()
 		beatOne = false
 	else:
 		sequencer.increment_values()
 		sequencer.set_next_position()
-		
+	
 	if prevShape != null:
 		prevShape.position = shapeSTORAGE
 	if prevRec != null:
 		prevRec.position = receiverSTORAGE
 	if prevHint != null:
 		prevHint.position = hintsStorage
+	if prevAltRec != null:
+		prevAltRec.position = altReceiverStorage
+		
 	
 	receivers[sequencer.recShape].position = sequencer.recPos
 	hints[sequencer.hintShape].position = sequencer.hintPos
@@ -93,12 +99,18 @@ func _on_beats_timeout() -> void:
 	prevHint = hints[sequencer.hintShape]
 	prevShape = shapes[sequencer.recShape]
 	
-
+	if sequencer.currSequenceValues == sequencer.get_current_sequence_size() - 1:
+		prevAltRec = altReceivers[sequencer.recShape]
+		altReceivers[sequencer.recShape].position = abs(sequencer.recPos- sequencer.hintPos)
+		altReceivers[sequencer.recShape].rotation_degrees = sequencer.recOrient - 45
 
 func _process(delta: float) -> void:
 	shapes[sequencer.recShape].position = get_global_mouse_position()
 	
-
+	if Input.is_action_just_pressed("Input Shape"):
+		get_total_score()
+		scoreDisplay.text = str(totalScore)
+	
 func get_total_score() -> void:
 	if takeScore == true:
 		posPoint = get_position_score()
@@ -108,22 +120,22 @@ func get_total_score() -> void:
 		takeScore = false
 
 func get_position_score() -> int:
-	if shapePerf[shapes[sequencer.recShape]].has_overlapping_areas():
+	if shapePerf[sequencer.recShape].has_overlapping_areas():
 		return 3
-	elif shapeGreat[shapes[sequencer.recShape]].has_overlapping_areas():
+	elif shapeGreat[sequencer.recShape].has_overlapping_areas():
 		return 2
-	elif shapeOkay[shapes[sequencer.recShape]].has_overlapping_areas():
+	elif shapeOkay[sequencer.recShape].has_overlapping_areas():
 		return 1
 	return 0
 
 func get_orient_score() -> int:
-	if shapeOkay[shapes[sequencer.recShape]].has_overlapping_areas():
-		if shapes[shapes[sequencer.recShape]].rotation == receivers[shapes[sequencer.recShape]].rotation:
+	if shapeOkay[sequencer.recShape].has_overlapping_areas():
+		if shapes[sequencer.recShape].rotation == receivers[sequencer.recShape].rotation:
 			return 1
 	return 0
 
 func get_time_score() -> int:
-	if shapeOkay[shapes[sequencer.recShape]].has_overlapping_areas():
+	if shapeOkay[sequencer.recShape].has_overlapping_areas():
 		if beatTimer.time_left > .01 && beatTimer.time_left < .3:
 			return 3
 		elif beatTimer.time_left > .3 && beatTimer.time_left < .6:

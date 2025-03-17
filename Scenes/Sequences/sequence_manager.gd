@@ -37,6 +37,9 @@ func increment_values() -> void:
 		currSequenceValues += 1
 	assign_values()
 
+func get_current_sequence_size() -> int:
+	return sequences[currSequence].receiverPattern.size()
+
 func assign_values() -> void:
 	recShape = sequences[currSequence].receiverPattern[currSequenceValues]
 	hintShape = sequences[currSequence].hintPattern[currSequenceValues]
@@ -55,15 +58,17 @@ func set_next_position() -> void:
 	recPos = sequences[currSequence].recPosSetter.position
 	hintPos = sequences[currSequence].hintPosSetter.position
 
-func set_next_sequence() -> void:
-	for c in altRecCollider:
-		if c.has_overlapping_areas():
-			if currSequence >= self.get_child_count() - 2:
-				currSequence = 0
-			else:
-				currSequence += 2
+func set_next_sequence(next : Area2D) -> void:
+	if next.has_overlapping_areas():
+		currSequenceValues = 0
+		if currSequence >= self.get_child_count() - 2:
+			currSequence = 0
 		else:
-			if currSequence == self.get_child_count():
-				currSequence = 0
-			else:
-				currSequence += 1
+			currSequence += 2
+	else:
+		currSequenceValues = 0
+		if currSequence == self.get_child_count():
+			currSequence = 0
+		else:
+			currSequence += 1
+	
