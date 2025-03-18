@@ -19,6 +19,7 @@ var recPos : Vector2;
 var hintPos : Vector2;
 
 
+
 func _ready() -> void:
 	for a in altRec:
 		altRecCollider.append(a.get_child(1))
@@ -67,8 +68,16 @@ func set_next_sequence(next : Area2D) -> void:
 			currSequence += 2
 	else:
 		currSequenceValues = 0
-		if currSequence == self.get_child_count():
+		if currSequence == self.get_child_count() - 1:
 			currSequence = 0
 		else:
 			currSequence += 1
 	
+func set_option_A_sequence() -> int:
+	if currSequence == self.get_child_count() - 1:
+		return 0
+	else:
+		return currSequence + 1
+
+func set_option_B_sequence() -> int:
+	return 0

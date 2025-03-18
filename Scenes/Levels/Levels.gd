@@ -9,6 +9,7 @@ extends Node2D
 #shapes
 @onready var shapes = $"Assigned Shapes".get_children()
 @onready var hints = $Hints.get_children()
+@onready var altHints = $"Alt Hints"
 @onready var receivers = $Receivers.get_children()
 @onready var altReceivers = $"Alt Receivers".get_children()
 
@@ -44,7 +45,6 @@ var prevHint;
 var prevShape;
 var prevAltRec;
 
-
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	for s in shapes:
@@ -62,6 +62,9 @@ func _ready() -> void:
 	
 	for h in hints:
 		h.position = hintsStorage
+		
+	for ah in altHints:
+		ah.position = hintsStorage
 	
 	sequencer.set_initial_sequence()
 	sequencer.set_initial_positions()
@@ -70,7 +73,6 @@ func _ready() -> void:
 	audioPlayer.play()
 	beatTimer.start(syncToStart + beatOffset)
 	
-
 func _on_beats_timeout() -> void:
 	beatTimer.start(beat * sequencer.nextBeat)
 	takeScore = true
