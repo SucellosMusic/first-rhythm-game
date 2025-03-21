@@ -9,7 +9,7 @@ extends Node2D
 #shapes
 @onready var shapes = $"Assigned Shapes".get_children()
 @onready var hints = $Hints.get_children()
-@onready var altHints = $"Alt Hints"
+@onready var altHints = $"Alt Hints".get_children()
 @onready var receivers = $Receivers.get_children()
 @onready var altReceivers = $"Alt Receivers".get_children()
 
@@ -44,6 +44,7 @@ var prevRec;
 var prevHint;
 var prevShape;
 var prevAltRec;
+var prevAltHint;
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -92,20 +93,29 @@ func _on_beats_timeout() -> void:
 	if prevAltRec != null:
 		prevAltRec.position = altReceiverStorage
 		
-	
-	receivers[sequencer.recShape].position = sequencer.recPos
-	hints[sequencer.hintShape].position = sequencer.hintPos
-	receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
-	hints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient
-	prevRec = receivers[sequencer.recShape]
-	prevHint = hints[sequencer.hintShape]
-	prevShape = shapes[sequencer.recShape]
-	
 	if sequencer.currSequenceValues == sequencer.get_current_sequence_size() - 1:
-		prevAltRec = altReceivers[sequencer.recShape]
+		receivers[sequencer.recShape].position = sequencer.recPos
+		receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
 		altReceivers[sequencer.recShape].position = abs(sequencer.recPos- sequencer.hintPos)
 		altReceivers[sequencer.recShape].rotation_degrees = sequencer.recOrient - 45
-
+		hints[sequencer.hintOptionAShape].position = sequencer.hintOptionAPos
+		hints[sequencer.hintOptionAShape].rotation_degrees = sequencer.hintOptionAOrient
+		altHints[sequencer.hintOptionBShape].position = sequencer.hintOptionBPos
+		altHints[sequencer.hintOptionBShape].rotation_degrees = sequencer.hintOptionBOrient
+		prevRec = receivers[sequencer.recShape]
+		prevAltRec = altReceivers[sequencer.recShape]
+		prevHint = hints[sequencer.hintOptionAShape]
+		prevAltHint = hints[sequencer.hintOptionBShape]
+		
+	else:
+		receivers[sequencer.recShape].position = sequencer.recPos
+		hints[sequencer.hintShape].position = sequencer.hintPos
+		receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
+		hints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient
+		prevRec = receivers[sequencer.recShape]
+		prevHint = hints[sequencer.hintShape]
+		prevShape = shapes[sequencer.recShape]
+	
 func _process(delta: float) -> void:
 	shapes[sequencer.recShape].position = get_global_mouse_position()
 	
