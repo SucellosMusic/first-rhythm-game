@@ -19,11 +19,8 @@ var recPos : Vector2;
 var hintPos : Vector2;
 var hintOptionAShape : int;
 var hintOptionAOrient : int;
-var hintOptionAPos : Vector2;
 var hintOptionBShape : int;
 var hintOptionBOrient : int;
-var hintOptionBPos : Vector2;
-
 
 func _ready() -> void:
 	for a in altRec:
@@ -50,7 +47,7 @@ func assign_values() -> void:
 	recShape = sequences[currSequence].receiverPattern[currSequenceValues]
 	recOrient = sequences[currSequence].receiverOrientation[currSequenceValues]
 	nextBeat = sequences[currSequence].nextBeat[currSequenceValues]
-	if currSequenceValues == sequences[currSequence].hintPattern.size() - 1:
+	if currSequenceValues > sequences[currSequence].hintPattern.size() - 1:
 		hintOptionAShape = sequences[get_option_A_hint()].receiverPattern[0]
 		hintOptionAOrient = sequences[get_option_A_hint()].receiverOrientation[0]
 		hintOptionBShape = sequences[get_option_B_hint()].receiverPattern[0]
@@ -70,11 +67,11 @@ func set_next_position() -> void:
 	recPos = sequences[currSequence].recPosSetter.position
 	hintPos = sequences[currSequence].hintPosSetter.position
 	
-func get_option_A_hint_position() -> void:
-	hintOptionAPos = sequences[get_option_A_hint()].posStart
+func get_option_A_hint_position() -> Vector2:
+	return sequences[get_option_A_hint()].recPosSetter.position
 	
-func get_option_B_hint_position() -> void:
-	hintOptionBPos = sequences[get_option_B_hint()].posStart
+func get_option_B_hint_position() -> Vector2:
+	return sequences[get_option_B_hint()].recPosSetter.position
 
 func set_next_sequence(next : Area2D) -> void:
 	if next.has_overlapping_areas():
@@ -97,7 +94,7 @@ func get_option_A_hint() -> int:
 		return currSequence + 1
 
 func get_option_B_hint() -> int:
-	if currSequence == self.get_child_count() - 2:
+	if currSequence >= self.get_child_count() - 2:
 		return 0
 	else:
 		return currSequence + 2

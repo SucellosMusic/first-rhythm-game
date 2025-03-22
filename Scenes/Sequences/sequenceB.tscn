@@ -4,7 +4,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_xmpew"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 7.85222, 78.4, 0, 0, 0, 0, 259.123, 526.4, 0, 0, 0, 0, 636.03, 78.4, 0, 0, 0, 0, 887.301, 616)
+"points": PackedVector2Array(0, 0, 0, 0, 7.85222, 78.4, 0, 0, 0, 0, 259.123, 526.4, 0, 0, 0, 0, 636.03, 78.4, 0, 0, 0, 0, 819.651, 508.48)
 }
 point_count = 4
 
@@ -14,17 +14,17 @@ incrementValue = 200
 hintStart = 200
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(120, 72)
-scale = Vector2(1.01882, 0.714286)
+position = Vector2(119.333, 60.8)
+scale = Vector2(1.10372, 0.857143)
 curve = SubResource("Curve2D_xmpew")
 
 [node name="Receiver Position Setter" type="PathFollow2D" parent="Path2D"]
 position = Vector2(7.85222, 78.4)
-rotation = 1.05964
+rotates = false
 
 [node name="Hint Position Setter" type="PathFollow2D" parent="Path2D"]
 position = Vector2(7.85222, 78.4)
-rotation = 1.05964
+rotates = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_top = 512.0

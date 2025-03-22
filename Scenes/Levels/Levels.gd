@@ -92,25 +92,27 @@ func _on_beats_timeout() -> void:
 		prevHint.position = hintsStorage
 	if prevAltRec != null:
 		prevAltRec.position = altReceiverStorage
+	if prevAltHint != null:
+		prevAltHint.position = hintsStorage
 		
 	if sequencer.currSequenceValues == sequencer.get_current_sequence_size() - 1:
 		receivers[sequencer.recShape].position = sequencer.recPos
 		receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
 		altReceivers[sequencer.recShape].position = abs(sequencer.recPos- sequencer.hintPos)
 		altReceivers[sequencer.recShape].rotation_degrees = sequencer.recOrient - 45
-		hints[sequencer.hintOptionAShape].position = sequencer.hintOptionAPos
+		hints[sequencer.hintOptionAShape].position = sequencer.get_option_A_hint_position()
 		hints[sequencer.hintOptionAShape].rotation_degrees = sequencer.hintOptionAOrient
-		altHints[sequencer.hintOptionBShape].position = sequencer.hintOptionBPos
+		altHints[sequencer.hintOptionBShape].position = sequencer.get_option_B_hint_position()
 		altHints[sequencer.hintOptionBShape].rotation_degrees = sequencer.hintOptionBOrient
 		prevRec = receivers[sequencer.recShape]
 		prevAltRec = altReceivers[sequencer.recShape]
 		prevHint = hints[sequencer.hintOptionAShape]
-		prevAltHint = hints[sequencer.hintOptionBShape]
+		prevAltHint = altHints[sequencer.hintOptionBShape]
 		
 	else:
 		receivers[sequencer.recShape].position = sequencer.recPos
-		hints[sequencer.hintShape].position = sequencer.hintPos
 		receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
+		hints[sequencer.hintShape].position = sequencer.hintPos
 		hints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient
 		prevRec = receivers[sequencer.recShape]
 		prevHint = hints[sequencer.hintShape]

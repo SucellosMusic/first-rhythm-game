@@ -20,11 +20,11 @@ curve = SubResource("Curve2D_xmpew")
 
 [node name="Receiver Position Setter" type="PathFollow2D" parent="Path2D"]
 position = Vector2(7.85222, 358.4)
-rotation = 0.775611
+rotates = false
 
 [node name="Hint Position Setter" type="PathFollow2D" parent="Path2D"]
 position = Vector2(7.85222, 358.4)
-rotation = 0.775611
+rotates = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_top = 512.0
