@@ -47,7 +47,7 @@ func assign_values() -> void:
 	recShape = sequences[currSequence].receiverPattern[currSequenceValues]
 	recOrient = sequences[currSequence].receiverOrientation[currSequenceValues]
 	nextBeat = sequences[currSequence].nextBeat[currSequenceValues]
-	if currSequenceValues > sequences[currSequence].hintPattern.size() - 1:
+	if currSequenceValues >= sequences[currSequence].hintPattern.size() - 1:
 		hintOptionAShape = sequences[get_option_A_hint()].receiverPattern[0]
 		hintOptionAOrient = sequences[get_option_A_hint()].receiverOrientation[0]
 		hintOptionBShape = sequences[get_option_B_hint()].receiverPattern[0]
