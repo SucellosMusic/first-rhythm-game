@@ -108,7 +108,7 @@ func _on_beats_timeout() -> void:
 		prevAltRec = altReceivers[sequencer.recShape]
 		prevHint = hints[sequencer.hintOptionAShape]
 		prevAltHint = altHints[sequencer.hintOptionBShape]
-		
+		prevShape = shapes[sequencer.recShape]
 	else:
 		receivers[sequencer.recShape].position = sequencer.recPos
 		receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
@@ -124,6 +124,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Input Shape"):
 		get_total_score()
 		scoreDisplay.text = str(totalScore)
+	
+	if sequencer.currSequenceValues == sequencer.get_current_sequence_size() - 1:
+		sequencer.set_next_sequence(altRecCollision[sequencer.recShape])
 	
 func get_total_score() -> void:
 	if takeScore == true:

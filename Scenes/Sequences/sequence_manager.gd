@@ -5,10 +5,6 @@ extends Node
 var currSequence : int = 0;
 var currSequenceValues : int = 0;
 
-#area2d
-@onready var altRec = $"../Alt Receivers".get_children()
-var altRecCollider : Array[Area2D];
-
 #sequence values
 var recShape : int;
 var hintShape : int;
@@ -23,8 +19,7 @@ var hintOptionBShape : int;
 var hintOptionBOrient : int;
 
 func _ready() -> void:
-	for a in altRec:
-		altRecCollider.append(a.get_child(1))
+	pass
 		
 func set_initial_sequence() -> void:
 	currSequence = 0
