@@ -70,7 +70,7 @@ func _ready() -> void:
 	sequencer.initialize_sequencer()
 	sequencer.set_initial_positions()
 	
-	audioPlayer.play()
+	#audioPlayer.play()
 	beatTimer.start(syncToStart + beatOffset)
 	
 func _on_beats_timeout() -> void:
@@ -116,6 +116,9 @@ func _on_beats_timeout() -> void:
 		prevRec = receivers[sequencer.recShape]
 		prevHint = hints[sequencer.hintShape]
 		prevShape = shapes[sequencer.recShape]
+		
+	print("sequence: ", sequencer.currSequence)
+	print("sequence value: ", sequencer.currSequenceValues)
 	
 func _process(delta: float) -> void:
 	shapes[sequencer.recShape].position = get_global_mouse_position()
