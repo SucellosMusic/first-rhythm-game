@@ -67,9 +67,8 @@ func _ready() -> void:
 	for ah in altHints:
 		ah.position = hintsStorage
 	
-	sequencer.set_initial_sequence()
+	sequencer.initialize_sequencer()
 	sequencer.set_initial_positions()
-	sequencer.set_initial_values()
 	
 	audioPlayer.play()
 	beatTimer.start(syncToStart + beatOffset)

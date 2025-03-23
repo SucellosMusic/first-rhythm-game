@@ -26,6 +26,7 @@ beatOffset = 0.75
 [node name="Hints" parent="." instance=ExtResource("2_qll7g")]
 
 [node name="Alt Hints" parent="." instance=ExtResource("2_qll7g")]
+modulate = Color(0.5, 0.5, 0.5, 1)
 
 [node name="Alt Receivers" parent="." instance=ExtResource("3_7ky36")]
 

@@ -20,23 +20,18 @@ var hintOptionBOrient : int;
 
 func _ready() -> void:
 	pass
-		
-func set_initial_sequence() -> void:
-	currSequence = 0
+	
+func get_current_sequence_size() -> int:
+	return sequences[currSequence].receiverPattern.size()
 
-func set_initial_values() -> void:
+func initialize_sequencer() -> void:
+	currSequence = 0
 	currSequenceValues = 0
 	assign_values()
 
-func increment_values() -> void:
-	if currSequenceValues == sequences[currSequence].receiverPattern.size() - 1:
-		currSequenceValues = 0
-	else: 
-		currSequenceValues += 1
+func increment_values() -> void: 
+	currSequenceValues += 1
 	assign_values()
-
-func get_current_sequence_size() -> int:
-	return sequences[currSequence].hintPattern.size()
 
 func assign_values() -> void:
 	recShape = sequences[currSequence].receiverPattern[currSequenceValues]
@@ -70,18 +65,16 @@ func get_option_B_hint_position() -> Vector2:
 
 func set_next_sequence(next : Area2D) -> void:
 	if next.has_overlapping_areas():
-		currSequenceValues = 0
 		if currSequence >= self.get_child_count() - 2:
 			currSequence = 0
 		else:
 			currSequence += 2
 	else:
-		currSequenceValues = 0
 		if currSequence == self.get_child_count() - 1:
 			currSequence = 0
 		else:
 			currSequence += 1
-	
+	currSequenceValues = 0
 func get_option_A_hint() -> int:
 	if currSequence == self.get_child_count() - 1:
 		return 0
