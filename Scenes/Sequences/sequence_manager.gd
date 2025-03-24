@@ -46,10 +46,14 @@ func assign_values() -> void:
 		hintShape = sequences[currSequence].receiverPattern[currSequenceValues + 1]
 		hintOrient = sequences[currSequence].receiverOrientation[currSequenceValues + 1]
 
-func set_initial_positions() -> void:
+func initialize_positions() -> void:
 	for s in sequences:
 		s.recPosSetter.progress = s.posStart
 		s.hintPosSetter.progress = s.hintStart
+
+func set_first_beat_position() -> void:
+	recPos = sequences[currSequence].recPosSetter.position
+	hintPos = sequences[currSequence].hintPosSetter.position
 
 func set_next_position() -> void:
 	sequences[currSequence].recPosSetter.progress += sequences[currSequence].incrementValue
@@ -74,7 +78,8 @@ func set_next_sequence(next : Area2D) -> void:
 			currSequence = 0
 		else:
 			currSequence += 1
-	currSequenceValues = 0
+	currSequenceValues = -1
+
 func get_option_A_hint() -> int:
 	if currSequence == self.get_child_count() - 1:
 		return 0
