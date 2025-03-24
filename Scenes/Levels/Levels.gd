@@ -35,11 +35,12 @@ var timePoint : int = 0
 var totalScore : int = 0
 var takeScore : bool = false
 
-#storage
+#vector locations
 @onready var shapeSTORAGE = Vector2(-500, 400)
 @onready var receiverSTORAGE = Vector2(-500, 150)
 @onready var altReceiverStorage = Vector2(-500, 650)
 @onready var hintsStorage = Vector2(-500, 900)
+@onready var altRecPos = Vector2(640, 320)
 var prevRec;
 var prevHint;
 var prevShape;
@@ -93,11 +94,22 @@ func _on_beats_timeout() -> void:
 		prevAltRec.position = altReceiverStorage
 	if prevAltHint != null:
 		prevAltHint.position = hintsStorage
-		
-	if sequencer.currSequenceValues == sequencer.get_current_sequence_size() - 1:
+
+	if sequencer.currSequenceValues == sequencer.get_current_sequence_size() - 2:
 		receivers[sequencer.recShape].position = sequencer.recPos
 		receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
-		altReceivers[sequencer.recShape].position = abs(sequencer.recPos- sequencer.hintPos)
+		hints[sequencer.hintShape].position = sequencer.hintPos
+		hints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient
+		altHints[sequencer.hintShape].position = altRecPos
+		altHints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient - 45
+		prevRec = receivers[sequencer.recShape]
+		prevHint = hints[sequencer.hintShape]
+		prevAltHint = altHints[sequencer.hintShape]
+		prevShape = shapes[sequencer.recShape]
+	elif sequencer.currSequenceValues == sequencer.get_current_sequence_size() - 1:
+		receivers[sequencer.recShape].position = sequencer.recPos
+		receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
+		altReceivers[sequencer.recShape].position = altRecPos
 		altReceivers[sequencer.recShape].rotation_degrees = sequencer.recOrient - 45
 		hints[sequencer.hintOptionAShape].position = sequencer.get_option_A_hint_position()
 		hints[sequencer.hintOptionAShape].rotation_degrees = sequencer.hintOptionAOrient
@@ -117,10 +129,8 @@ func _on_beats_timeout() -> void:
 		prevHint = hints[sequencer.hintShape]
 		prevShape = shapes[sequencer.recShape]
 		
-	print("sequence: ", sequencer.currSequence)
-	print("sequence value: ", sequencer.currSequenceValues)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	shapes[sequencer.recShape].position = get_global_mouse_position()
 	
 	if Input.is_action_just_pressed("Input Shape"):
