@@ -26,6 +26,7 @@ var altRecCollision : Array[Area2D] = []
 @export var beatOffset : float;
 @onready var beat : float = (60/bpm)
 var beatOne : bool = true;
+var newSequence : bool = false;
 
 #scoring
 @onready var scoreDisplay : Label = $"Score Text"
@@ -80,6 +81,10 @@ func _on_beats_timeout() -> void:
 	if beatOne:
 		sequencer.set_first_beat_position()
 		beatOne = false
+	elif newSequence:
+		sequencer.set_first_beat_position()
+		sequencer.increment_values()
+		newSequence = false
 	else:
 		sequencer.increment_values()
 		sequencer.set_next_position()
@@ -120,6 +125,7 @@ func _on_beats_timeout() -> void:
 		prevHint = hints[sequencer.hintOptionAShape]
 		prevAltHint = altHints[sequencer.hintOptionBShape]
 		prevShape = shapes[sequencer.recShape]
+		newSequence = true
 	else:
 		receivers[sequencer.recShape].position = sequencer.recPos
 		receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
