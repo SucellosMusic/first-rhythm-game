@@ -27,6 +27,8 @@ var altRecCollision : Array[Area2D] = []
 @onready var beat : float = (60/bpm)
 var beatOne : bool = true;
 var newSequence : bool = false;
+var optionB : bool = false;
+var selectOption : bool = false;
 
 #scoring
 @onready var scoreDisplay : Label = $"Score Text"
@@ -78,6 +80,14 @@ func _ready() -> void:
 func _on_beats_timeout() -> void:
 	beatTimer.start(beat * sequencer.nextBeat)
 	takeScore = true
+	if selectOption:
+		if optionB:
+			sequencer.go_to_option_B()
+			optionB = false
+		else:
+			sequencer.go_to_option_A()
+		selectOption = false
+	
 	if beatOne:
 		sequencer.set_first_beat_position()
 		beatOne = false
@@ -125,6 +135,7 @@ func _on_beats_timeout() -> void:
 		prevHint = hints[sequencer.hintOptionAShape]
 		prevAltHint = altHints[sequencer.hintOptionBShape]
 		prevShape = shapes[sequencer.recShape]
+		selectOption = true
 		newSequence = true
 	else:
 		receivers[sequencer.recShape].position = sequencer.recPos
@@ -141,9 +152,9 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Input Shape"):
 		get_total_score()
 		scoreDisplay.text = str(totalScore)
-	
-	if sequencer.currSequenceValues == sequencer.get_current_sequence_size() - 1:
-		sequencer.set_next_sequence(altRecCollision[sequencer.recShape])
+		
+	if altRecCollision[sequencer.recShape].has_overlapping_areas() && optionB == false:
+		optionB = true
 	
 func get_total_score() -> void:
 	if takeScore == true:

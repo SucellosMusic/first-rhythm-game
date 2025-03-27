@@ -67,18 +67,36 @@ func get_option_A_hint_position() -> Vector2:
 func get_option_B_hint_position() -> Vector2:
 	return sequences[get_option_B_hint()].recPosSetter.position
 
-func set_next_sequence(next : Area2D) -> void:
-	if next.has_overlapping_areas():
-		if currSequence >= self.get_child_count() - 2:
-			currSequence = 0
-		else:
-			currSequence += 2
+#func set_next_sequence(next : Area2D) -> void:
+	#if next.has_overlapping_areas():
+		#if currSequence >= self.get_child_count() - 2:
+			#currSequence = 0
+		#else:
+			#currSequence += 2
+		#print("path B Chosen")
+	#else:
+		#if currSequence == self.get_child_count() - 1:
+			#currSequence = 0
+		#else:
+			#currSequence += 1
+		#print("path A Chosen")
+	#currSequenceValues = -1
+
+func go_to_option_B() -> void:
+	if currSequence >= self.get_child_count() - 2:
+		currSequence = 0
 	else:
-		if currSequence == self.get_child_count() - 1:
-			currSequence = 0
-		else:
-			currSequence += 1
+		currSequence += 2
 	currSequenceValues = -1
+	print("Path B Chosen")
+		
+func go_to_option_A() -> void:
+	if currSequence == self.get_child_count() -1:
+		currSequence = 0
+	else:
+		currSequence += 1
+	currSequenceValues = -1
+	print("Path A Chosen")
 
 func get_option_A_hint() -> int:
 	if currSequence == self.get_child_count() - 1:
