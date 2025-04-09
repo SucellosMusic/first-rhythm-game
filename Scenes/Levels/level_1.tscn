@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpkjgdxj4w1c3"]
+[gd_scene load_steps=19 format=3 uid="uid://bpkjgdxj4w1c3"]
 
 [ext_resource type="PackedScene" uid="uid://cfyncxwjlvw0v" path="res://Scenes/Assigned Shapes/assigned_shapes.tscn" id="1_23prg"]
 [ext_resource type="Script" path="res://Scenes/Levels/Levels.gd" id="1_s7wna"]
@@ -7,16 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://d0jbkh7knwqo" path="res://Scenes/Receiver Shapes/receivers.tscn" id="4_i70i7"]
 [ext_resource type="PackedScene" uid="uid://elgpgmehfkrw" path="res://Scenes/score_text.tscn" id="5_q7k4a"]
 [ext_resource type="PackedScene" uid="uid://dng3h5awxp8ai" path="res://Scenes/Sequences/sequenceA.tscn" id="7_i1218"]
-[ext_resource type="AudioStream" uid="uid://btf6gu57t3fvj" path="res://Audio/WIP.wav" id="7_n7l43"]
 [ext_resource type="Script" path="res://Scenes/Sequences/sequence_manager.gd" id="7_p44fw"]
 [ext_resource type="PackedScene" uid="uid://58fdkmw6jve0" path="res://Scenes/Sequences/sequenceB.tscn" id="9_tq3wd"]
 [ext_resource type="PackedScene" uid="uid://d0jp0dgwghf53" path="res://Scenes/Sequences/sequenceC.tscn" id="10_1c17x"]
 [ext_resource type="PackedScene" uid="uid://cm3ai6n5wd26p" path="res://Scenes/Sequences/sequenceD.tscn" id="11_lhrob"]
 [ext_resource type="PackedScene" uid="uid://c7bl7wpg233dn" path="res://Scenes/Sequences/sequenceE.tscn" id="12_61go8"]
+[ext_resource type="AudioStream" uid="uid://dr56g236sgrt7" path="res://Audio/Shape Beats_Level One_SectionA_One.wav" id="13_b7low"]
+[ext_resource type="AudioStream" uid="uid://8rtfcrn2a2ja" path="res://Audio/Shape Beats_Level One_SectionA_Two.wav" id="14_agxh7"]
+[ext_resource type="AudioStream" uid="uid://daqi0ilydttx3" path="res://Audio/Shape Beats_Level One_SectionB_One.wav" id="15_g1t2h"]
+[ext_resource type="AudioStream" uid="uid://8fpw0xq5emhw" path="res://Audio/Shape Beats_Level One_SectionB_Two.wav" id="16_rgn55"]
+[ext_resource type="AudioStream" uid="uid://dlx6gjgc4b5bu" path="res://Audio/Shape Beats_Level One_SectionC_One.wav" id="17_4kqyk"]
+[ext_resource type="AudioStream" uid="uid://cqd1x0rvlpdsn" path="res://Audio/Shape Beats_Level One_SectionC_Two.wav" id="18_0d383"]
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_s7wna")
-bpm = 120.0
+bpm = 92.0
 beatOffset = 0.75
 
 [node name="Beats" type="Timer" parent="."]
@@ -34,10 +39,6 @@ modulate = Color(0.5, 0.5, 0.5, 1)
 
 [node name="Score Text" parent="." instance=ExtResource("5_q7k4a")]
 z_index = 10
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_n7l43")
-volume_db = -9.622
 
 [node name="Sequencer" type="Node" parent="."]
 script = ExtResource("7_p44fw")
@@ -66,5 +67,33 @@ nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 receiverPattern = Array[int]([6, 1, 5, 2, 4, 0, 3])
 receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
 nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
+
+[node name="Exit Instruction" type="Label" parent="."]
+offset_left = 448.0
+offset_right = 768.0
+offset_bottom = 40.0
+text = "Press ESC any time to return to menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="Node" parent="."]
+
+[node name="SectionA_One" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("13_b7low")
+
+[node name="SectionA_Two" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("14_agxh7")
+
+[node name="SectionB_One" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("15_g1t2h")
+
+[node name="SectionB_Two" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("16_rgn55")
+
+[node name="SectionC_One" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("17_4kqyk")
+
+[node name="SectionC_Two" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("18_0d383")
 
 [connection signal="timeout" from="Beats" to="." method="_on_beats_timeout"]

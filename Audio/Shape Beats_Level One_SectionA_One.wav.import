@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dr56g236sgrt7"
+path="res://.godot/imported/Shape Beats_Level One_SectionA_One.wav-364a4eccf7b091c4ebe9c4351111fa06.sample"
+
+[deps]
+
+source_file="res://Audio/Shape Beats_Level One_SectionA_One.wav"
+dest_files=["res://.godot/imported/Shape Beats_Level One_SectionA_One.wav-364a4eccf7b091c4ebe9c4351111fa06.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

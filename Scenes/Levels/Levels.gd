@@ -4,7 +4,7 @@ extends Node2D
 @onready var sequencer = $Sequencer
 
 #audio sequences
-@onready var audioPlayer : AudioStreamPlayer = $AudioStreamPlayer
+@onready var audioPlayers : Array[Node] = $Music.get_children()
 
 #shapes
 @onready var shapes = $"Assigned Shapes".get_children()
@@ -74,8 +74,13 @@ func _ready() -> void:
 	sequencer.initialize_sequencer()
 	sequencer.initialize_positions()
 	
-	#audioPlayer.play()
 	beatTimer.start(syncToStart + beatOffset)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	
 func _on_beats_timeout() -> void:
 	beatTimer.start(beat * sequencer.nextBeat)
@@ -145,6 +150,8 @@ func _on_beats_timeout() -> void:
 		prevRec = receivers[sequencer.recShape]
 		prevHint = hints[sequencer.hintShape]
 		prevShape = shapes[sequencer.recShape]
+		
+	
 	
 func _process(_delta: float) -> void:
 	shapes[sequencer.recShape].position = get_global_mouse_position()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Menus/scripts/audio_settings.gd" id="1_0wm25"]
 [ext_resource type="Script" path="res://Scenes/Menus/scripts/controls.gd" id="1_1w83y"]
-[ext_resource type="Script" path="res://Scenes/Menus/play.gd" id="1_rtnjg"]
+[ext_resource type="Script" path="res://Scenes/Menus/scripts/play.gd" id="1_rtnjg"]
 [ext_resource type="Script" path="res://Scenes/Menus/scripts/v_sync_setter.gd" id="1_yo88m"]
 [ext_resource type="Script" path="res://Scenes/Menus/scripts/video_settings.gd" id="2_bfhna"]
 
@@ -44,7 +44,16 @@ offset_left = 448.0
 offset_top = 97.0
 offset_right = 576.0
 offset_bottom = 161.0
-text = "Tutorial"
+text = "Tutorial
+(incomplete)"
+
+[node name="Level One" type="Button" parent="TabContainer/Play"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 225.0
+offset_right = 576.0
+offset_bottom = 289.0
+text = "Level One"
 
 [node name="Controls" type="Control" parent="TabContainer"]
 visible = false
@@ -154,6 +163,16 @@ offset_top = 177.0
 offset_right = 670.0
 offset_bottom = 200.0
 text = "Option Two:"
+
+[node name="delete when fixed" type="Label" parent="TabContainer/Controls"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 33.0
+offset_right = 704.0
+offset_bottom = 73.0
+text = "!!! controls not currently customizeable !!!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Audio Settings" type="Control" parent="TabContainer"]
 visible = false
@@ -296,6 +315,7 @@ offset_bottom = 48.0
 rounded = true
 
 [connection signal="pressed" from="TabContainer/Play/Tutorial" to="TabContainer/Play" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="TabContainer/Play/Level One" to="TabContainer/Play" method="_on_level_one_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/Rotate Left/Rotate Left One" to="TabContainer/Controls" method="_on_rotate_left_one_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/Rotate Left/Rotate Left Two" to="TabContainer/Controls" method="_on_rotate_left_two_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/Rotate Right/Rotate Right One" to="TabContainer/Controls" method="_on_rotate_right_one_pressed"]
