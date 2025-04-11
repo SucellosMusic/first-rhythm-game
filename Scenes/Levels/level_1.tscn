@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bpkjgdxj4w1c3"]
+[gd_scene load_steps=20 format=3 uid="uid://bpkjgdxj4w1c3"]
 
 [ext_resource type="PackedScene" uid="uid://cfyncxwjlvw0v" path="res://Scenes/Assigned Shapes/assigned_shapes.tscn" id="1_23prg"]
 [ext_resource type="Script" path="res://Scenes/Levels/Levels.gd" id="1_s7wna"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cm3ai6n5wd26p" path="res://Scenes/Sequences/sequenceD.tscn" id="11_lhrob"]
 [ext_resource type="PackedScene" uid="uid://c7bl7wpg233dn" path="res://Scenes/Sequences/sequenceE.tscn" id="12_61go8"]
 [ext_resource type="AudioStream" uid="uid://dr56g236sgrt7" path="res://Audio/Shape Beats_Level One_SectionA_One.wav" id="13_b7low"]
+[ext_resource type="PackedScene" uid="uid://dl2enca3r1d2n" path="res://Scenes/Sequences/sequenceF.tscn" id="13_v4d05"]
 [ext_resource type="AudioStream" uid="uid://8rtfcrn2a2ja" path="res://Audio/Shape Beats_Level One_SectionA_Two.wav" id="14_agxh7"]
 [ext_resource type="AudioStream" uid="uid://daqi0ilydttx3" path="res://Audio/Shape Beats_Level One_SectionB_One.wav" id="15_g1t2h"]
 [ext_resource type="AudioStream" uid="uid://8fpw0xq5emhw" path="res://Audio/Shape Beats_Level One_SectionB_Two.wav" id="16_rgn55"]
@@ -21,12 +22,16 @@
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_s7wna")
+songLength = 41.739
 bpm = 92.0
 beatOffset = 0.75
 
 [node name="Beats" type="Timer" parent="."]
 
+[node name="Music Timer" type="Timer" parent="."]
+
 [node name="Assigned Shapes" parent="." instance=ExtResource("1_23prg")]
+position = Vector2(0, 0)
 
 [node name="Hints" parent="." instance=ExtResource("2_qll7g")]
 
@@ -44,14 +49,14 @@ z_index = 10
 script = ExtResource("7_p44fw")
 
 [node name="SequenceA" parent="Sequencer" instance=ExtResource("7_i1218")]
-receiverPattern = Array[int]([0, 1, 2, 3, 4, 5, 6])
-receiverOrientation = Array[int]([0, 0, 45, 0, 0, 0, 0])
-nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
+receiverPattern = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 
 [node name="SequenceB" parent="Sequencer" instance=ExtResource("9_tq3wd")]
-receiverPattern = Array[int]([1, 3, 5, 2, 4, 6, 0])
-receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
-nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
+receiverPattern = Array[int]([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2])
+receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 
 [node name="SequenceC" parent="Sequencer" instance=ExtResource("10_1c17x")]
 receiverPattern = Array[int]([5, 6, 4, 3, 2, 1, 0])
@@ -68,9 +73,11 @@ receiverPattern = Array[int]([6, 1, 5, 2, 4, 0, 3])
 receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
 nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 
+[node name="SequenceF" parent="Sequencer" instance=ExtResource("13_v4d05")]
+
 [node name="Exit Instruction" type="Label" parent="."]
-offset_left = 448.0
-offset_right = 768.0
+offset_left = 424.0
+offset_right = 744.0
 offset_bottom = 40.0
 text = "Press ESC any time to return to menu"
 horizontal_alignment = 1
@@ -96,4 +103,13 @@ stream = ExtResource("17_4kqyk")
 [node name="SectionC_Two" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("18_0d383")
 
+[node name="Start Button" type="Button" parent="."]
+offset_left = 512.0
+offset_top = 256.0
+offset_right = 640.0
+offset_bottom = 320.0
+text = "Start"
+
 [connection signal="timeout" from="Beats" to="." method="_on_beats_timeout"]
+[connection signal="timeout" from="Music Timer" to="." method="_on_music_timer_timeout"]
+[connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]

@@ -4,7 +4,9 @@ extends Node2D
 @onready var sequencer = $Sequencer
 
 #audio sequences
-@onready var audioPlayers : Array[Node] = $Music.get_children()
+@onready var audio = $Music
+@onready var audioPlayers = audio.get_children()
+@onready var audioCount = audio.get_child_count()
 
 #shapes
 @onready var shapes = $"Assigned Shapes".get_children()
@@ -20,6 +22,9 @@ var shapeOkay : Array[Area2D] = []
 var altRecCollision : Array[Area2D] = []
 
 #time
+@onready var songTimer : Timer = $"Music Timer"
+@export var songLength : float;
+var songIndex : int = 0
 @onready var syncToStart : float = AudioServer.get_time_to_next_mix()
 @export var bpm : float;
 @onready var beatTimer : Timer = $Beats
@@ -50,8 +55,11 @@ var prevShape;
 var prevAltRec;
 var prevAltHint;
 
+#misc
+@onready var startButton : Button = $"Start Button"
+var sequenceStarted : bool = false
+
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	for s in shapes:
 		s.position = shapeSTORAGE
 		shapePerf.append(s.get_child(1))
@@ -73,23 +81,35 @@ func _ready() -> void:
 	
 	sequencer.initialize_sequencer()
 	sequencer.initialize_positions()
-	
+
+func _on_start_button_pressed() -> void:
+	audioPlayers[songIndex].play()
+	songTimer.start(syncToStart + songLength)
 	beatTimer.start(syncToStart + beatOffset)
+	sequenceStarted = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	startButton.disabled = true
+	startButton.visible = false
 	
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_ESCAPE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
-	
+func _on_music_timer_timeout() -> void:
+	audioPlayers[songIndex].play()
+
 func _on_beats_timeout() -> void:
 	beatTimer.start(beat * sequencer.nextBeat)
 	takeScore = true
 	if selectOption:
 		if optionB:
+			if songIndex == audioCount -1:
+				songIndex = 1
+			else:
+				songIndex += 2
 			sequencer.go_to_option_B()
 			optionB = false
 		else:
+			if songIndex == audioCount -1:
+				songIndex = 0
+			else:
+				songIndex += 1
 			sequencer.go_to_option_A()
 		selectOption = false
 	
@@ -150,11 +170,10 @@ func _on_beats_timeout() -> void:
 		prevRec = receivers[sequencer.recShape]
 		prevHint = hints[sequencer.hintShape]
 		prevShape = shapes[sequencer.recShape]
-		
-	
 	
 func _process(_delta: float) -> void:
-	shapes[sequencer.recShape].position = get_global_mouse_position()
+	if sequenceStarted:
+		shapes[sequencer.recShape].position = get_global_mouse_position()
 	
 	if Input.is_action_just_pressed("Input Shape"):
 		get_total_score()
@@ -195,3 +214,9 @@ func get_time_score() -> int:
 		elif beatTimer.time_left > .6 && beatTimer.time_left < 1:
 			return 1
 	return 0
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
