@@ -93,6 +93,7 @@ func _on_start_button_pressed() -> void:
 	
 func _on_music_timer_timeout() -> void:
 	audioPlayers[songIndex].play()
+	songTimer.start(songLength)
 
 func _on_beats_timeout() -> void:
 	beatTimer.start(beat * sequencer.nextBeat)

@@ -29,6 +29,7 @@ beatOffset = 0.75
 [node name="Beats" type="Timer" parent="."]
 
 [node name="Music Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Assigned Shapes" parent="." instance=ExtResource("1_23prg")]
 position = Vector2(0, 0)
@@ -59,21 +60,24 @@ receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 
 [node name="SequenceC" parent="Sequencer" instance=ExtResource("10_1c17x")]
-receiverPattern = Array[int]([5, 6, 4, 3, 2, 1, 0])
-receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
-nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
+receiverPattern = Array[int]([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3])
+receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 
 [node name="SequenceD" parent="Sequencer" instance=ExtResource("11_lhrob")]
-receiverPattern = Array[int]([3, 4, 2, 5, 1, 0, 5])
-receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
-nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
+receiverPattern = Array[int]([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4])
+receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 
 [node name="SequenceE" parent="Sequencer" instance=ExtResource("12_61go8")]
-receiverPattern = Array[int]([6, 1, 5, 2, 4, 0, 3])
-receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0])
-nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
+receiverPattern = Array[int]([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4])
+receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 
 [node name="SequenceF" parent="Sequencer" instance=ExtResource("13_v4d05")]
+receiverPattern = Array[int]([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6])
+receiverOrientation = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+nextBeat = Array[float]([2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 
 [node name="Exit Instruction" type="Label" parent="."]
 offset_left = 424.0
