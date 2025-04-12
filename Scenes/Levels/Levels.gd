@@ -14,6 +14,8 @@ extends Node2D
 @onready var altHints = $"Alt Hints".get_children()
 @onready var receivers = $Receivers.get_children()
 @onready var altReceivers = $"Alt Receivers".get_children()
+@onready var visualQueue = $"Visual Queue"
+@onready var altVisualQueue = $"Alt Visual Queue"
 
 #collision detectors
 var shapePerf : Array[Area2D] = []
@@ -58,6 +60,7 @@ var prevAltHint;
 #misc
 @onready var startButton : Button = $"Start Button"
 var sequenceStarted : bool = false
+var beginVisualQueues : bool = false
 
 func _ready() -> void:
 	for s in shapes:
@@ -65,20 +68,15 @@ func _ready() -> void:
 		shapePerf.append(s.get_child(1))
 		shapeGreat.append(s.get_child(2))
 		shapeOkay.append(s.get_child(3))
-
 	for r in receivers:
 		r.position = receiverSTORAGE
-	
 	for ar in altReceivers:
 		ar.position = altReceiverStorage
 		altRecCollision.append(ar.get_child(1))
-	
 	for h in hints:
 		h.position = hintsStorage
-		
 	for ah in altHints:
 		ah.position = hintsStorage
-	
 	sequencer.initialize_sequencer()
 	sequencer.initialize_positions()
 
@@ -117,6 +115,7 @@ func _on_beats_timeout() -> void:
 	if beatOne:
 		sequencer.set_first_beat_position()
 		sequencer.increment_values()
+		beginVisualQueues = true
 		beatOne = false
 	elif newSequence:
 		sequencer.set_first_beat_position()
@@ -144,6 +143,8 @@ func _on_beats_timeout() -> void:
 		hints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient
 		altHints[sequencer.hintShape].position = altRecPos
 		altHints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient - 45
+		visualQueue.position = sequencer.recPos
+		altVisualQueue.position = hintsStorage
 		prevRec = receivers[sequencer.recShape]
 		prevHint = hints[sequencer.hintShape]
 		prevAltHint = altHints[sequencer.hintShape]
@@ -157,6 +158,8 @@ func _on_beats_timeout() -> void:
 		hints[sequencer.hintOptionAShape].rotation_degrees = sequencer.hintOptionAOrient
 		altHints[sequencer.hintOptionBShape].position = sequencer.get_option_B_hint_position()
 		altHints[sequencer.hintOptionBShape].rotation_degrees = sequencer.hintOptionBOrient
+		visualQueue.position = sequencer.recPos
+		altVisualQueue.position = altRecPos
 		prevRec = receivers[sequencer.recShape]
 		prevAltRec = altReceivers[sequencer.recShape]
 		prevHint = hints[sequencer.hintOptionAShape]
@@ -169,6 +172,8 @@ func _on_beats_timeout() -> void:
 		receivers[sequencer.recShape].rotation_degrees = sequencer.recOrient
 		hints[sequencer.hintShape].position = sequencer.hintPos
 		hints[sequencer.hintShape].rotation_degrees = sequencer.hintOrient
+		visualQueue.position = sequencer.recPos
+		altVisualQueue.position = hintsStorage
 		prevRec = receivers[sequencer.recShape]
 		prevHint = hints[sequencer.hintShape]
 		prevShape = shapes[sequencer.recShape]
@@ -183,6 +188,11 @@ func _process(_delta: float) -> void:
 		
 	if altRecCollision[sequencer.recShape].has_overlapping_areas() && optionB == false:
 		optionB = true
+		
+	if beatTimer.time_left <= .5 && beginVisualQueues == true:
+		visualQueue.play()
+		altVisualQueue.play()
+	
 	
 func get_total_score() -> void:
 	if takeScore == true:
