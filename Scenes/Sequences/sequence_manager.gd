@@ -88,15 +88,13 @@ func go_to_option_B() -> void:
 	else:
 		currSequence += 2
 	currSequenceValues = -1
-	print("Path B Chosen")
-		
+
 func go_to_option_A() -> void:
 	if currSequence == self.get_child_count() -1:
 		currSequence = 0
 	else:
 		currSequence += 1
 	currSequenceValues = -1
-	print("Path A Chosen")
 
 func get_option_A_hint() -> int:
 	if currSequence == self.get_child_count() - 1:

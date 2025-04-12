@@ -116,6 +116,7 @@ func _on_beats_timeout() -> void:
 	
 	if beatOne:
 		sequencer.set_first_beat_position()
+		sequencer.increment_values()
 		beatOne = false
 	elif newSequence:
 		sequencer.set_first_beat_position()
